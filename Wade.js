@@ -8,7 +8,7 @@ import  * as evs from 'express-video-stream'; // Express Video Stream
 
 var app = express();
  
-evs.addVideo("1", "./Fuck_these_fuckin_fascists.mp4")    //Add video to config
+evs.addVideo("1", "./Revolution/Fuck_these_fuckin_fascists.mp4")    //Add video to config
  
 app.use(evs.middleware) //Use streaming middleware
  
