@@ -18,5 +18,5 @@ app.get('/', (req, res) => {
 })
  
 app.listen(5004, () => {
-    console.log("Test is up and running on localhost:5004")
+    console.log("Test is up and running on localhost:5004!")
 })
