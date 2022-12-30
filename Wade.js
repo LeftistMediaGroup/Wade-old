@@ -18,6 +18,6 @@ app.get('/', (req, res) => {
     res.send(page + ' ');
 })
  
-app.listen(5004, () => {
-    console.log("Test is up and running on localhost:5004!")
+app.listen(6000, () => {
+    console.log("Test is up and running on localhost:6000!")
 });
