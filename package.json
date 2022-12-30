@@ -5,7 +5,7 @@
   "main": "Wade.js",
   "type": "module",
   "scripts": {
-    "start": "node Wade.js"
+    "start": "node Wade"
   },
   "keywords": [],
   "author": "",
