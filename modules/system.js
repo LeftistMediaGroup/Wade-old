@@ -23,8 +23,6 @@ import musicRouter from './routes/music.js';
 import systemSocketRouter from '../systemSocket.js';
 
 
-
-
 export default function system() {
   // ssl init
   var privateKey = fs.readFileSync('./ssl/wade_key.pem');
