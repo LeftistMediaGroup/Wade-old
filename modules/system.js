@@ -24,6 +24,8 @@ import systemSocketRouter from '../systemSocket.js';
 
 
 export default function system() {
+  var app = express();
+
   // ssl init
   var privateKey = fs.readFileSync('./ssl/wade_key.pem');
   var certificate = fs.readFileSync('./ssl/wade.pem');
