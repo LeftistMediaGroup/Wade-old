@@ -27,7 +27,7 @@ export default function system() {
 
 
   // ssl init
-  var privateKey = fs.readFileSync('../ssl/wade.pem');
+  var privateKey = fs.readFileSync('../ssl/wade_key.pem');
   var certificate = fs.readFileSync('../ssl/wade.pem');
 
   var credentials = {key: privateKey, cert: certificate};
