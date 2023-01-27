@@ -19,17 +19,16 @@ var logger = require('morgan');
 var cors = require('cors');
 
 import registerRouter from './routes/register.js';
+import musicRouter from './routes/music.js';
+import systemSocketRouter from '../systemSocket.js';
+
+
 
 
 export default function system() {
-  var app = express();
-  var httpsServer = https.createServer(credentials, app);
-
-
   // ssl init
   var privateKey = fs.readFileSync('./ssl/wade_key.pem');
   var certificate = fs.readFileSync('./ssl/wade.pem');
-
   var credentials = {key: privateKey, cert: certificate};
 
   app.use(cors({
@@ -70,7 +69,9 @@ export default function system() {
   }))
 
   // Use Router
-  app.use("/", registerRouter);
+  app.use("/register", registerRouter);
+  app.use("/music", musicRouter);
+  app.use("/systemSocket", systemSocketRouter);
 
   app.use(cookieParser());
 
