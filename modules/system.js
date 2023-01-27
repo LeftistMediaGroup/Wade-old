@@ -8,6 +8,8 @@ var path = require('path');
 var fs = require('fs');
 var https = require('https');
 
+
+
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,6 +27,9 @@ import systemSocketRouter from '../systemSocket.js';
 
 export default function system() {
   var app = express();
+
+  var httpsServer = https.createServer(credentials, app);
+
 
   // ssl init
   var privateKey = fs.readFileSync('./ssl/wade_key.pem');
