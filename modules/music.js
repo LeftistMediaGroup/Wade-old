@@ -1,11 +1,12 @@
-export default function music {
-    import express from 'express';
-    import path from 'path';
-    import * as fs from 'fs';
-    import { dirname } from 'path';
+import express from 'express';
+import path from 'path';
+import * as fs from 'fs';
+import { dirname } from 'path';
 
-    import  * as evs from 'express-video-stream'; // Express Video Stream
-    
+import  * as evs from 'express-video-stream'; // Express Video Stream
+
+
+export default function music() {   
 
     var app = express();
     
