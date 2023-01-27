@@ -1,23 +1,5 @@
-import express from 'express';
-import path from 'path';
-import * as fs from 'fs';
-import { dirname } from 'path';
+import system from "./modules/system.js";
+import systemSocket from "./modules/systemSocket.js";
+import music from "./modules/music.js";
 
-import  * as evs from 'express-video-stream'; // Express Video Stream
- 
-
-var app = express();
- 
-evs.addVideo("1", "./Revolution/Fuck_these_fuckin_fascists.mp4");
-evs.addVideo("2", "./Revolution/Failed_State.mp3");
-
-app.use(evs.middleware) //Use streaming middleware
- 
-app.get('/', (req, res) => {
-    var page = fs.readFileSync('./index.html'); // Load html into buffer
-    res.send(page + ' ');
-})
- 
-app.listen(6100, () => {
-    console.log("Test is up and running on localhost:6100!")
-});
+console.log("Wade is online!");

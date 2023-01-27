@@ -12,6 +12,6 @@ io.on("connection", (socket) => {
   socket.emit("message", "connected!");
 });
 
-httpServer.listen(6101);
+httpServer.listen(4001);
 
-console.log("listening on 6101")
+console.log("System socket listening on 4001")
