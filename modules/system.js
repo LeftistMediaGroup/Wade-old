@@ -8,8 +8,6 @@ var path = require('path');
 var fs = require('fs');
 var https = require('https');
 
-
-
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,14 +20,12 @@ var cors = require('cors');
 
 import registerRouter from './routes/register.js';
 import musicRouter from './routes/music.js';
-import systemSocketRouter from '../systemSocket.js';
 
 
 export default function system() {
   var app = express();
 
   var httpsServer = https.createServer(credentials, app);
-
 
   // ssl init
   var privateKey = fs.readFileSync('./ssl/wade_key.pem');
@@ -76,7 +72,6 @@ export default function system() {
   // Use Router
   app.use("/register", registerRouter);
   app.use("/music", musicRouter);
-  app.use("/systemSocket", systemSocketRouter);
 
   app.use(cookieParser());
 
