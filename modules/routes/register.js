@@ -6,14 +6,16 @@ var express = require('express');
 var router = express.Router();
 
 
-router.get('/register', (req, res) => {
+router.post('/submit', (req, res) => {
+  //Database(req.body.email, req.body.username, req.body.password);
 
-  //Database(req.body.username, req.body.password);
+  console.log(req.body.email, req.body.username, req.body.password);
+});
 
-  res.json({
-    "status": "Success",
-    "Username": req.body.username
-  });
+router.post('/email_update', (req, res) => {
+  //Database(req.body.email);
+  
+  console.log(req.body.email);
 });
 
 export default router;
