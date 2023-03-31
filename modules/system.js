@@ -36,11 +36,7 @@ export default function system() {
   var certificate = fs.readFileSync('./ssl/wade.pem');
   var credentials = {key: privateKey, cert: certificate};
 
-  app.use(cors({
-    origin: '*',
-    optionsSuccessStatus: 200,
-    credentials: true
-  }));
+  app.use(cors());
 
   app.set('port', 4000)
 
