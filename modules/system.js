@@ -37,7 +37,7 @@ export default function system() {
   var credentials = {key: privateKey, cert: certificate};
 
   app.use(cors({
-    origin: true,
+    origin: '*',
     optionsSuccessStatus: 200,
     credentials: true
   }));
