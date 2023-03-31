@@ -36,8 +36,6 @@ export default function system() {
   var certificate = fs.readFileSync('./ssl/wade.pem');
   var credentials = {key: privateKey, cert: certificate};
 
-  app.use(cors());
-
   app.set('port', 4000)
 
   httpsServer.listen(app.get('port'), () => {
@@ -68,6 +66,8 @@ export default function system() {
     saveUninitialized: false,
     resave: true
   }))
+
+  app.use(cors());
 
   // Use Router
   app.use("/register", registerRouter);
