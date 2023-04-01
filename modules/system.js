@@ -46,11 +46,13 @@ export default function system() {
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'jade');
 
-  app.use(cors({
-    origin: true,
-    optionsSuccessStatus: 200,
-    credentials: true
-  }));
+  app.use(
+    cors({
+      origin: ["http://localhost:4000", "*"], // restrict calls to those this address
+      methods: "GET" // only allow GET requests
+    })
+  );
+  
 
   
   app.use(logger('dev'));
