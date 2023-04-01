@@ -28,15 +28,6 @@ router.post('/submit', function (req, res) {
           console.log(`PUT Result: ${JSON.stringify(result)}`);
         }
     });
-
-    account_db.allDocs({
-        include_docs: true,
-        attachments: true
-      }).then(function (result) {
-        console.log(`Result: ${JSON.stringify(result, null, 2)}`);
-      }).catch(function (err) {
-        console.log(err);
-      });
 });
 
 export default router;
