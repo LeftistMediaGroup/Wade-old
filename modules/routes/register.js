@@ -31,7 +31,7 @@ router.post('/submit', function (req, res) {
         include_docs: true,
         attachments: true
       }).then(function (result) {
-        console.log(`Result: ${JSON.stringify(result)}`);
+        console.log(`Result: ${JSON.stringify(result, null, 2)}`);
       }).catch(function (err) {
         console.log(err);
       });
