@@ -48,7 +48,7 @@ export default function system() {
 
   app.use(cors({
     origin: '*'
-}));
+  }));
 
   app.use(logger('dev'));
   app.use(express.json());
