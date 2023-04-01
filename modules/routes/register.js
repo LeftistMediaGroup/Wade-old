@@ -10,7 +10,7 @@ var PouchDB = require('pouchdb');
 const { v4: uuid_v4 } = require('uuid');
 
 
-var account_db = new PouchDB('https://Back.LeftistMediaGroup.org/database/account/');
+var account_db = new PouchDB('https://Back.LeftistMediaGroup.org/database/account');
 
 account_db.info();
 
