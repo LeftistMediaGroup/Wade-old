@@ -11,7 +11,7 @@ var PouchDB = require('pouchdb');
 var account_db = new PouchDB('http://localhost:3000/account');
 
 router.post('/submit', function (req, res) {
-    data = req.body;
+    let data = req.body;
 
     console.log(`Data: ${data}`);
 
