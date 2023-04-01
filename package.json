@@ -17,6 +17,7 @@
     "express-session": "^1.17.3",
     "express-video-stream": "^1.2.0",
     "localtunnel": "^2.0.2",
+    "morgan": "^1.10.0",
     "react-scripts": "^5.0.1",
     "save": "^2.9.0",
     "socket-io": "^1.0.0",
