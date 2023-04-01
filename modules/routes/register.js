@@ -17,15 +17,6 @@ account_db.info().then(function (info) {
   console.log(info);
 });
 
-account_db.allDocs({
-    include_docs: true,
-}).then(function (result) {
-    console.log(`Final Result: ${JSON.stringify(result, null, 2)}`);
-}).catch(function (err) {
-    console.log(err);
-});
-
-
 router.post("/submit", function (req, res) {
   let data = req.body;
 
