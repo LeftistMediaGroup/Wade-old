@@ -29,7 +29,6 @@ export default function system() {
 
   var corsOptions = {
     origin: 'https://localhost:4000',
-    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
     methods: ['GET', 'PUT', 'UPDATE', 'DELETE']
   }
   app.use(cors(corsOptions));
