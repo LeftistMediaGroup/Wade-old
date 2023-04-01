@@ -7,11 +7,15 @@ const router = express.Router();
 
 var PouchDB = require('pouchdb');
 
+import { uuid } from 'uuidv4';
+
 
 var account_db = new PouchDB('http://localhost:3000/account');
 
 router.post('/submit', function (req, res) {
     let data = req.body;
+
+    data["_id"] = uuid();
 
     console.log(`Data: ${data}`);
 
