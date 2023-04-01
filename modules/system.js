@@ -27,6 +27,8 @@ import musicRouter from './routes/music.js';
 export default function system() {
   var app = express();
 
+  app.use(cors())
+  
   var httpsServer = https.createServer(credentials, app);
 
 
@@ -44,10 +46,6 @@ export default function system() {
   // view engine setup
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'jade');
-
-  app.use(cors({
-    origin: '*'
-  }));
 
   app.use(logger('dev'));
   app.use(express.json());
