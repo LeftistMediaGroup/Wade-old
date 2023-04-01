@@ -15,6 +15,8 @@ var account_db = new PouchDB('https://Back.LeftistMediaGroup.org/database/accoun
 router.post('/submit', function (req, res) {
     let data = req.body;
 
+    account_db.info()
+
     data["_id"] = uuid_v4();
 
     console.log(`Data: ${JSON.stringify(data, null, 2)}`);
