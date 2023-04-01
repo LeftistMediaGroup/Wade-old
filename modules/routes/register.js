@@ -17,3 +17,5 @@ router.post('/register/submit', function (req, res) {
         console.log(`Data In Database: ${JSON.stringify(doc.rows)}`);
     });
 });
+
+export default router;
