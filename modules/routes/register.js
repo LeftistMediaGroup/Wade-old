@@ -17,6 +17,15 @@ account_db.info().then(function (info) {
   console.log(info);
 });
 
+account_db.allDocs({
+    include_docs: true,
+}).then(function (result) {
+    console.log(`Final Result: ${JSON.stringify(result, null, 2)}`);
+}).catch(function (err) {
+    console.log(err);
+});
+
+
 router.post("/submit", function (req, res) {
   let data = req.body;
 
@@ -24,18 +33,7 @@ router.post("/submit", function (req, res) {
 
   console.log(`Data: ${JSON.stringify(data, null, 2)}`);
 
-  account_db.put(data).then(function () {
-    account_db
-      .allDocs({
-        include_docs: true,
-      })
-      .then(function (result) {
-        console.log(`Final Result: ${JSON.stringify(result, null, 2)}`);
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
-  });
+  account_db.put(data)
 });
 
 export default router;
