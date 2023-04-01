@@ -3,7 +3,9 @@ var cors = require('cors');
 var app = express();
 
 
-app.use(cors());
+app.use(cors({
+  credentials: false
+}));
 
 app.post('/register/email_update', function (req, res, next) {
   console.log(JSON.stringify(req));
