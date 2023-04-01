@@ -9,8 +9,8 @@ var cors = require('cors');
 var app = express();
 var bodyParser = require('body-parser');
 
-import register from ('./routes/register.js');
-import database from ('./routes/database.js');
+import register from './routes/register.js';
+import database from './routes/database.js';
 
 
 // parse application/x-www-form-urlencoded
