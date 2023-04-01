@@ -25,7 +25,7 @@ router.post('/submit', function (req, res) {
 
     account_db.put(data, function callback(err, result) {
         if (!err) {
-          console.log(`Result: ${result}`);
+          console.log(`PUT Result: ${JSON.stringify(result)}`);
         }
     });
 
