@@ -2,7 +2,7 @@
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
-var express = require('express');
+import * as express from "express";
 const router = express.Router()
 
 var cors = require('cors');
