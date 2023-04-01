@@ -46,9 +46,7 @@ export default function system() {
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'jade');
 
-  app.use(cors());
-
-  const cors = require('cors');
+  
 app.use(cors({
     origin: 'https://leftistmediagroup.org'
 }));
