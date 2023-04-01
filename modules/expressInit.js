@@ -30,5 +30,3 @@ app.use('/database', database);
 app.listen(4000, function () {
   console.log('CORS-enabled web server listening on port 4000')
 });
-
-module.exports = router;
