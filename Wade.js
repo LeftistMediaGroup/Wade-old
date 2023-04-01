@@ -2,7 +2,7 @@
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
-import express from "./modules/expressInit.js"
+import express_init from "./modules/expressInit.js"
 
 
-express();
+express_init();
