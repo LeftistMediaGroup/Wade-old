@@ -28,7 +28,7 @@ export default function system() {
   var app = express();
 
   var corsOptions = {
-    origin: 'http://example.com',
+    origin: 'https://leftistmediagroup.org',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
   app.use(cors(corsOptions));
