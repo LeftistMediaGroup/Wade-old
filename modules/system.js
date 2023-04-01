@@ -46,14 +46,12 @@ export default function system() {
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'jade');
 
-  app.options('*', cors());
+  app.use(cors());
 
-  var corsOptions = {
-    origin: 'http://example.com',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  }
-
-
+  const cors = require('cors');
+app.use(cors({
+    origin: 'https://leftistmediagroup.org'
+}));
   
   app.use(logger('dev'));
   app.use(express.json());
