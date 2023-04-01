@@ -48,8 +48,8 @@ export default function system() {
 
   app.use(
     cors({
-      origin: ["http://localhost:4000", "*"], // restrict calls to those this address
-      methods: "GET" // only allow GET requests
+      origin: "https://LeftistMediaGroup.org", // restrict calls to those this address
+      methods: "GET, POST, DELETE, PUT"
     })
   );
   
