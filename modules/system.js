@@ -22,7 +22,6 @@ var cors = require('cors');
 
 import registerRouter from './routes/register.js';
 import musicRouter from './routes/music.js';
-import systemSocketRouter from '../systemSocket.js';
 
 
 export default function system() {
@@ -74,7 +73,6 @@ export default function system() {
   // Use Router
   app.use("/register", registerRouter);
   app.use("/music", musicRouter);
-  app.use("/systemSocket", systemSocketRouter);
 
   app.use(cookieParser());
 
