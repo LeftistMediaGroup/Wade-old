@@ -8,7 +8,8 @@ var app = express();
 
 
 app.use(cors({
-  credentials: false
+  credentials: false,
+  origin: "https://leftistmediagroup.org"
 }));
 
 app.post('/register/email_update', function (req, res, next) {
