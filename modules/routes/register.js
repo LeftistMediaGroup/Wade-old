@@ -12,7 +12,9 @@ const { v4: uuid_v4 } = require('uuid');
 
 var account_db = new PouchDB('https://Back.LeftistMediaGroup.org/database/account');
 
-account_db.info();
+account_db.info().then(function (info) {
+    console.log(info);
+})
 
 router.post('/submit', function (req, res) {
     let data = req.body;
