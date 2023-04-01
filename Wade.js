@@ -5,7 +5,7 @@ var app = express();
 app.use(cors());
 
 app.post('/register/email_update', function (req, res, next) {
-    console.log(req.body);
+    console.log(req);
 });
 
 app.listen(4000, function () {
