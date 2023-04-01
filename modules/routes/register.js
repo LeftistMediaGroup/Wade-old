@@ -7,7 +7,7 @@ const router = express.Router();
 
 var PouchDB = require('pouchdb');
 
-import { v4 as uuidv4 } from 'uuid';
+const { v4: uuid_v4 } = require('uuid');
 
 
 var account_db = new PouchDB('http://localhost:3000/account');
