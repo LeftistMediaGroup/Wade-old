@@ -2,7 +2,7 @@
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
-import * as express from "express";
+import express from 'express';
 const router = express.Router();
 
 var PouchDB = require('pouchdb');
