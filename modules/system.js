@@ -29,7 +29,8 @@ export default function system() {
 
   var corsOptions = {
     origin: 'https://leftistmediagroup.org',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+    methods: ['GET', 'PUT', 'UPDATE', 'DELETE']
   }
   app.use(cors(corsOptions));
 
