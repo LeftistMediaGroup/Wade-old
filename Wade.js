@@ -8,7 +8,7 @@ var app = express();
 
 
 app.use(cors({
-  credentials: false,
+  credentials: true,
   origin: "https://leftistmediagroup.org"
 }));
 
