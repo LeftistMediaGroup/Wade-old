@@ -21,9 +21,14 @@ router.post('/submit', function (req, res) {
 
     account_db.put(data);
 
-    account_db.allDocs({include_docs: true, descending: true}, function(err, doc) {
-        console.log(`Data In Database: ${JSON.stringify(doc.rows)}`);
-    });
+    account_db.allDocs({
+        include_docs: true,
+        attachments: true
+      }).then(function (result) {
+        console.log(`Result: ${JSON.stringify(result)}`);
+      }).catch(function (err) {
+        console.log(err);
+      });
 });
 
 export default router;
