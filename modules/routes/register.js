@@ -21,7 +21,7 @@ router.post('/submit', function (req, res) {
 
     account_db.put(data);
 
-    db.allDocs({include_docs: true, descending: true}, function(err, doc) {
+    account_db.allDocs({include_docs: true, descending: true}, function(err, doc) {
         console.log(`Data In Database: ${JSON.stringify(doc.rows)}`);
     });
 });
