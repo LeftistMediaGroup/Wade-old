@@ -15,7 +15,7 @@ var account_db = new PouchDB('http://localhost:3000/account');
 router.post('/submit', function (req, res) {
     let data = req.body;
 
-    data["_id"] = v4();
+    data["_id"] = uuidv4();
 
     console.log(`Data: ${data}`);
 
