@@ -35,6 +35,8 @@ router.post("/submit", function (req, res) {
     console.log(`Accounts file out: ${JSON.stringify(accounts, null, 2)}`);
     
     account_db.put(accounts);
+  }).catch(function (err) {
+    console.log(`Error: ${err}`);
   });
 });
 
