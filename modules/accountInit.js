@@ -19,7 +19,7 @@ account_db.info().then(function () {
             throw err;
         }
     }).then(function (accounts) {
-        console.log(`New Accounts file: ${JSON.stringify(accounts)}`);
+        console.log(`New Accounts file: ${JSON.stringify(accounts, null, 2)}`);
 
         return accounts;
     }).then(function (accounts) {
