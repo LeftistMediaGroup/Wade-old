@@ -27,7 +27,7 @@ router.post("/submit", function (req, res) {
 
   console.log(`User modified: ${JSON.stringify(user, null, 2)}`);
 
-  account_db.getAttachment('Accounts', 'document.body').then(function (accounts) {
+  account_db.get('User_Accounts').then(function (accounts) {
     console.log(`Account file in ${JSON.stringify(accounts, null, 2)}`);
 
     set(accounts, `users.${user.email}`, user);

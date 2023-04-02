@@ -8,20 +8,19 @@ var account_db = new PouchDB(
   "https://Back.LeftistMediaGroup.org/database/account"
 );
 
-account_db.info().then(function () {
-    account_db.get('Accounts', {attachments: true}).catch(function (err) {
-        if (err.name === 'not_found') {
+account_db.info();
 
-            let doc = {
-                "_id": "Accounts",
-                "users": {}
-            };
+account_db.get('Accounts', {attachments: true}).catch(function (err) {
+    if (err.name === 'not_found') {
+        doc = {
+            "_id": "User_Accounts",
+            "users": {}
+        };
 
-            console.log(`Setting Account file: ${JSON.stringify(doc, null, 2)}`);
-            account_db.put(doc);
-        } 
-    }).then(function (accounts) {
+        console.log(`Setting Account file: ${JSON.stringify(doc, null, 2)}`);
+        account_db.put(doc);
+    } 
+}).then(function (accounts) {
         console.log(`Returned Account File: ${JSON.stringify(accounts, null, 2)}`);
-    });
 });
 
