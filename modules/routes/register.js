@@ -36,7 +36,7 @@ router.post("/submit", function (req, res) {
     
     account_db.put(accounts);
   }).catch(function (err) {
-    console.log(`Error: ${err}`);
+    console.log(`Error: ${JSON.stringify(err, null, 2}`);
   });
 });
 
