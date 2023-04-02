@@ -1,6 +1,6 @@
 {
     "log": {
         "level": "info",
-        "file": "./database/logs/log.txt"
+        "file": "./logs/log.txt"
     }
 }
