@@ -21,7 +21,7 @@ app.use(bodyParser.json())
 
 app.use(cors({
   credentials: true,
-  origin: "https://leftistmediagroup.org"
+  origin: "*"
 }));
 
 app.use('/register', register);
