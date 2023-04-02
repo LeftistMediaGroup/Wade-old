@@ -8,7 +8,7 @@ const router = express.Router();
 var PouchDB = require('pouchdb');
 
 router.use('/account', require('express-pouchdb')(PouchDB.defaults({
-    prefix: './modules/routes/database/',
+    prefix: './database/',
 })));
 
 export default router;
