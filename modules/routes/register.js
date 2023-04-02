@@ -30,11 +30,11 @@ router.post("/submit", function (req, res) {
   console.log(`User modified: ${JSON.stringify(user, null, 2)}`);
 
   account_db.get("Accounts", {attachments: true}).then(function (accounts) {
-    console.log(`Account file in ${accounts}`);
+    console.log(`Account file in ${JSON.stringify(accounts, null, 2)}`);
 
     set(accounts, `users.${user.email}`, user);
 
-    console.log(`Accounts file out: ${accounts}`);
+    console.log(`Accounts file out: ${JSON.stringify(accounts, null, 2)}`);
     
     account_db.put(accounts);
   });
