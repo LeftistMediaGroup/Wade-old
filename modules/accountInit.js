@@ -22,6 +22,6 @@ account_db.get('User_Accounts', {attachments: true}).catch(function (err) {
         account_db.put(doc);
     } 
 }).then(function (accounts) {
-    console.log(`Returned Account File: ${JSON.stringify(accounts, null, 2)}`);
+    console.log(`Returned Account File: ${JSON.stringify(accounts.test)}`);
 });
 
