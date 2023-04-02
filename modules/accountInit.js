@@ -20,7 +20,7 @@ account_db.info().then(function () {
         console.log(`New Accounts file: ${accounts}`);
 
         return accounts;
-    }).then(function () {
+    }).then(function (accounts) {
         account_db.put(accounts);
 
         console.log("Account file created");
