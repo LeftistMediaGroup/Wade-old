@@ -15,6 +15,8 @@ account_db.info().then(function () {
                 _id: "Accounts",
                 users: {}
             }
+        } else {
+            throw err;
         }
     }).then(function (accounts) {
         console.log(`New Accounts file: ${accounts}`);
