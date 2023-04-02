@@ -19,10 +19,12 @@ account_db.info().then(function (info) {
 
 router.post("/submit", function (req, res) {
   let user = req.body;
+  
+  console.log(`User in: ${JSON.stringify(user, null, 2)}`);
 
   user["_id"] = uuid_v4();
 
-  console.log(`User in: ${JSON.stringify(user, null, 2)}`);
+  console.log(`User motified: ${JSON.stringify(user, null, 2)}`);
 
   account_db.get("Accounts", {attachments: true}).then(function (accounts) {
     console.log(`Account file in ${accounts}`);
