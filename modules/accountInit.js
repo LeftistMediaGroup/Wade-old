@@ -17,11 +17,11 @@ account_db.info().then(function () {
                 "users": {}
             };
 
-            console.log(`Setting Account file: ${data}`);
+            console.log(`Setting Account file: ${JSON.stringify(data, null, 2)}`);
             account_db.put(data);
         } 
     }).then(function (accounts) {
-        console.log(`Returned Account File: ${JSON.stringify(accounts)}`);
+        console.log(`Returned Account File: ${JSON.stringify(accounts, null, 2)}`);
     });
 });
 
