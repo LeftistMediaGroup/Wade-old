@@ -12,8 +12,8 @@ account_db.info().then(function () {
     account_db.get('Accounts').catch(function (err) {
         if (err.name === 'not_found') {
             return {
-                _id: "Accounts",
-                users: {}
+                "_id": "Accounts",
+                "users": {}
             }
         } else {
             throw err;
