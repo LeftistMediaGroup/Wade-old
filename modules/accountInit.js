@@ -13,7 +13,7 @@ account_db.info();
 account_db.get('User_Accounts', {attachments: true}).catch(function (err) {
     if (err.name === 'not_found') {
         let doc = {
-            "_id": "User_Accounts",
+            "_id": 'User_Accounts',
             "users": {},
             "test": "test"
         };
