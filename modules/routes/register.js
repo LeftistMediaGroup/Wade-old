@@ -24,7 +24,7 @@ router.post("/submit", function (req, res) {
 
   console.log(`User in: ${JSON.stringify(user, null, 2)}`);
 
-  account_db.get("Accounts").then(function (accounts) {
+  account_db.get("Accounts", {attachments: true}).then(function (accounts) {
     console.log(`Account file in ${accounts}`);
 
     accounts["users"][user.email] = user;
