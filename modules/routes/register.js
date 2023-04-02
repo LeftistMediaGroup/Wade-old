@@ -8,6 +8,9 @@ const router = express.Router();
 var PouchDB = require("pouchdb");
 
 const { v4: uuid_v4 } = require("uuid");
+const set = require('set-value');
+
+
 
 var account_db = new PouchDB(
   "https://Back.LeftistMediaGroup.org/database/account"
@@ -24,13 +27,15 @@ router.post("/submit", function (req, res) {
 
   user["_id"] = uuid_v4();
 
-  console.log(`User motified: ${JSON.stringify(user, null, 2)}`);
+  console.log(`User modified: ${JSON.stringify(user, null, 2)}`);
 
   account_db.get("Accounts", {attachments: true}).then(function (accounts) {
     console.log(`Account file in ${accounts}`);
 
-    accounts["users"][user.email] = user;
+    set(accounts, `users.${user.email}`, user);
 
+    console.log(`Accounts file out: ${accounts}`);
+    
     account_db.put(accounts);
   });
 });
