@@ -9,7 +9,7 @@ var account_db = new PouchDB(
 );
 
 account_db.info().then(function () {
-    db.get('Accounts').catch(function (err) {
+    account_db.get('Accounts').catch(function (err) {
         if (err.name === 'not_found') {
             return {
                 _id: "Accounts",
