@@ -11,13 +11,17 @@ var account_db = new PouchDB(
 account_db.info().then(function () {
     account_db.get('Accounts').catch(function (err) {
         if (err.name === 'not_found') {
-            account_db.put({
+
+            let data = {
                 "_id": "Accounts",
                 "users": {}
-            });
+            };
+
+            console.log(`Setting Account file: ${data}`);
+            account_db.put(data);
         } 
     }).then(function (accounts) {
-        console.log(`Returned Account File: ${accounts}`);
+        console.log(`Returned Account File: ${JSON.stringify(accounts)}`);
     });
 });
 
