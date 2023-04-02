@@ -11,7 +11,7 @@ var account_db = new PouchDB(
 account_db.info().then(function () {
     account_db.get('Accounts').catch(function (err) {
         if (err.name === 'not_found') {
-            return {
+            return data = {
                 "_id": "Accounts",
                 "users": {}
             }
