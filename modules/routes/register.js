@@ -16,9 +16,7 @@ var account_db = new PouchDB(
   "https://Back.LeftistMediaGroup.org/database/account"
 );
 
-account_db.info().then(function (info) {
-  console.log(info);
-});
+account_db.info()
 
 router.post("/submit", function (req, res) {
   let user = req.body;
@@ -29,7 +27,7 @@ router.post("/submit", function (req, res) {
 
   console.log(`User modified: ${JSON.stringify(user, null, 2)}`);
 
-  account_db.get("Accounts", {attachments: true}).then(function (accounts) {
+  account_db.get('Accounts', {attachments: true}).then(function (accounts) {
     console.log(`Account file in ${JSON.stringify(accounts, null, 2)}`);
 
     set(accounts, `users.${user.email}`, user);
