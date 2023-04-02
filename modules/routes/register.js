@@ -18,13 +18,19 @@ account_db.info().then(function (info) {
 });
 
 router.post("/submit", function (req, res) {
-  let data = req.body;
+  let user = req.body;
 
-  data["_id"] = uuid_v4();
+  user["_id"] = uuid_v4();
 
-  console.log(`Data: ${JSON.stringify(data, null, 2)}`);
+  console.log(`User in: ${JSON.stringify(user, null, 2)}`);
 
-  account_db.put(data)
+  account_db.get("Accounts").then(function (accounts) {
+    console.log(`Account file in ${accounts}`);
+
+    accounts["users"][user.email] = user;
+
+    account_db.put(accounts);
+  });
 });
 
 export default router;
