@@ -1,6 +1,6 @@
 {
     "log": {
         "level": "info",
-        "file": "./log/log.txt"
+        "file": "./modules/routes/log/log.txt"
     }
 }
