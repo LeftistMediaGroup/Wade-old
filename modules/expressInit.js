@@ -12,7 +12,7 @@ var bodyParser = require('body-parser');
 import register from './routes/register.js';
 import database from './routes/database.js';
 
-import {account_init} from "./modules/accountInit.js";
+import {account_init} from "./accountInit.js";
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
