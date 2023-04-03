@@ -23,6 +23,5 @@ account_db.get('User_Accounts', {attachments: true}).catch(function (err) {
     } 
 }).then(function (accounts) {
     console.log(`Returned Account File: ${JSON.stringify(accounts)}`);
-    console.log(`Name: ${accounts.name}`);
 });
 
