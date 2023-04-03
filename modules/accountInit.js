@@ -5,7 +5,7 @@ const require = createRequire(import.meta.url);
 var PouchDB = require("pouchdb");
 
 var account_db = new PouchDB(
-  "https://Back.LeftistMediaGroup.org/database/account"
+  "User_accounts"
 );
 
 account_db.info();
