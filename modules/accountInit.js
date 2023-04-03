@@ -5,7 +5,7 @@ const require = createRequire(import.meta.url);
 var PouchDB = require("pouchdb");
 
 
-export default function start(app){
+export function start(app){
     new Promise(app.use('/accounts', require('express-pouchdb')(PouchDB))).then(function () {
         setTimeout(() =>{
             var account_db = new PouchDB('https://Back.LeftistMediaGroup.org/database/account').then(function () {
