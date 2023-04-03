@@ -4,6 +4,4 @@ const require = createRequire(import.meta.url);
 
 import * as express_init from "./modules/expressInit.js";
 
-import {start} from "./modules/accountInit.js";
-
-start();
+import * as account_init from "./modules/accountInit.js";
