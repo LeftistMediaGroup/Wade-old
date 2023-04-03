@@ -30,7 +30,7 @@ app.use(cors({
 app.use('/register', register);
 app.use('/database', database);
 
-app.use('/db', require('express-pouchdb')(PouchDB))
+app.use('/database/accounts', require('express-pouchdb')(PouchDB))
 
 app.listen(4000, function () {
   console.log('CORS-enabled web server listening on port 4000')
