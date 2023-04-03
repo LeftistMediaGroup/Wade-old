@@ -12,6 +12,7 @@ var bodyParser = require('body-parser');
 import register from './routes/register.js';
 import database from './routes/database.js';
 
+import {account_init} from "./modules/accountInit.js";
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -26,6 +27,7 @@ app.use(cors({
 
 app.use('/register', register);
 app.use('/database', database);
+account_init.start(app);
 
 app.listen(4000, function () {
   console.log('CORS-enabled web server listening on port 4000')
