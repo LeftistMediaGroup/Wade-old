@@ -9,6 +9,9 @@ var cors = require('cors');
 var app = express();
 var bodyParser = require('body-parser');
 
+var PouchDB = require("pouchdb");
+
+
 import register from './routes/register.js';
 import database from './routes/database.js';
 
