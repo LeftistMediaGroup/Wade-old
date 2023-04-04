@@ -11,8 +11,7 @@ var PouchDB = require("pouchdb");
 const { v4: uuid_v4 } = require("uuid");
 const set = require('set-value');
 
-import * as dotenv from 'dotenv';
-dotenv.config();
+require('dotenv').config()
 
 
 var account_db = new PouchDB(
