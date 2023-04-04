@@ -26,4 +26,4 @@ setTimeout(()=> {
             console.log(`Returned Account File: ${JSON.stringify(accounts)}`)
         });
     });
-}, 2000);
+}, 4000);
