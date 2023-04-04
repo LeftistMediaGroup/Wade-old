@@ -9,7 +9,7 @@ require('dotenv').config();
 setTimeout(() => {
     try {
         var account_db = new PouchDB(
-            `https://${process.env.backend}:4000/database/account`
+            `https://${process.env.backend}/database/account`
         ).catch( function (err) { 
             console.log(`Error: ${JSON.stringify(err, null, 2)}`);
         });
