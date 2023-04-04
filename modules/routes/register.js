@@ -13,10 +13,13 @@ const set = require('set-value');
 
 require('dotenv').config()
 
-
-var account_db = new PouchDB(
-  `https://${process.env.backend}/database/account`
-);
+try{
+  var account_db = new PouchDB(
+    `https://${process.env.backend}/database/account`
+  );
+} catch (err){
+  console.log(`Error: ${err}`);
+};
 
 account_db.info()
 
