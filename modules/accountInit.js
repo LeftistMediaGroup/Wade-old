@@ -6,10 +6,6 @@ var PouchDB = require("pouchdb");
 
 require('dotenv').config();
 
-var account_db = new PouchDB(
-  `https://${process.env.backend}/database/account`
-);
-
 try {
     var account_db = new PouchDB(
         `https://${process.env.backend}/database/account`
