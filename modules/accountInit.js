@@ -14,8 +14,7 @@ account_db.get('User_Accounts', {attachments: true}).catch(function (err) {
     if (err.name === 'not_found') {
         let doc = {
             "_id": 'User_Accounts',
-            "users": {},
-            "test": "test"
+            "users": {}
         };
 
         console.log(`Setting Account file: ${JSON.stringify(doc, null, 2)}`);
