@@ -4,8 +4,11 @@ const require = createRequire(import.meta.url);
 
 var PouchDB = require("pouchdb");
 
+import * as dotenv from 'dotenv';
+dotenv.config()
+
 var account_db = new PouchDB(
-  "https://Back.LeftistMediaGroup.org/database/account"
+  `https://${process.env.backend}/database/account`
 );
 
 account_db.info();

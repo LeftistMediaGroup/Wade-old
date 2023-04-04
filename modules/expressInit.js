@@ -23,7 +23,7 @@ app.use(bodyParser.json())
 
 app.use(cors({
   credentials: true,
-  origin: `${process.env.backend}`
+  origin: `${process.env.frontend}`
 }));
 
 app.use('/register', register);
