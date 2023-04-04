@@ -7,7 +7,7 @@ var PouchDB = require("pouchdb");
 require('dotenv').config();
 
 var account_db = new PouchDB(
-  `https://${process.env.backend}database/account`
+  `https://${process.env.backend}/database/account`
 );
 
 setTimeout(()=> {
