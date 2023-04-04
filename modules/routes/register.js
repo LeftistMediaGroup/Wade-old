@@ -13,6 +13,7 @@ const set = require('set-value');
 
 require('dotenv').config()
 
+/*
 setTimeout(() => {
   var account_db = new PouchDB(
     `https://${process.env.backend}/database/account`
@@ -44,5 +45,5 @@ setTimeout(() => {
 }, 4000);
 
 
-
+*/
 export default router;
