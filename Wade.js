@@ -1,7 +1,7 @@
-import system from "./modules/system.js";
-import systemSocket from "./systemSocket.js";
+// Allow require
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 
-system();
-systemSocket();
+import * as express_init from "./modules/expressInit.js";
 
-console.log("Wade is online!");
+import * as account_init from "./modules/accountInit.js";
