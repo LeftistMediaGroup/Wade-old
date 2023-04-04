@@ -26,7 +26,7 @@ app.use(cors({
   origin: `${process.env.frontend}`
 }));
 
-app.use('/register', register);
+// app.use('/register', register);
 
 app.use('/database', require('express-pouchdb')(PouchDB.defaults({
   prefix: './database/',
