@@ -12,7 +12,7 @@ var bodyParser = require('body-parser');
 var PouchDB = require("pouchdb");
 
 
-import register from './routes/register.js';
+// import register from './routes/register.js';
 
 
 // parse application/x-www-form-urlencoded
