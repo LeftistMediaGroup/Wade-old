@@ -4,8 +4,10 @@ const require = createRequire(import.meta.url);
 
 var PouchDB = require("pouchdb");
 
+require('dotenv').config()
+
 var account_db = new PouchDB(
-  "https://Back.LeftistMediaGroup.org/database/account"
+  `https://${process.env.backend}/database/account`
 );
 
 account_db.info();
@@ -23,4 +25,3 @@ account_db.get('User_Accounts', {attachments: true}).catch(function (err) {
 }).then(function (accounts) {
     console.log(`Returned Account File: ${JSON.stringify(accounts)}`)
 });
-

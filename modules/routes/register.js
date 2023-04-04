@@ -2,6 +2,7 @@
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
+
 import express from "express";
 const router = express.Router();
 
@@ -10,10 +11,11 @@ var PouchDB = require("pouchdb");
 const { v4: uuid_v4 } = require("uuid");
 const set = require('set-value');
 
+require('dotenv').config()
 
 
 var account_db = new PouchDB(
-  "https://Back.LeftistMediaGroup.org/database/account"
+  `https://${process.env.backend}/database/account`
 );
 
 account_db.info()
