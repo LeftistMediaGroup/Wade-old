@@ -15,7 +15,7 @@ require('dotenv').config()
 
 setTimeout(() => {
   var account_db = new PouchDB(
-    `https://${process.env.backend}/database/account`
+    `https://${process.env.backend}:4000/database/account`
   );
 
   account_db.info()
