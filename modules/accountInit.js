@@ -6,15 +6,15 @@ var PouchDB = require("pouchdb");
 
 require('dotenv').config();
 
-try {
-    var account_db = new PouchDB(
-        `https://${process.env.backend}/database/account`
-    );    
-} catch (err) {
-    console.log(`Error: ${JSON.stringify(err, null, 2)}`);
-}
-
 setTimeout(() => {
+    try {
+        var account_db = new PouchDB(
+            `https://${process.env.backend}/database/account`
+        );    
+    } catch (err) {
+        console.log(`Error: ${JSON.stringify(err, null, 2)}`);
+    }
+    
     account_db.info().then(function () {
         account_db.get('User_Accounts').catch(function (err) {
             if (err.name === 'not_found') {
