@@ -15,7 +15,7 @@ require('dotenv').config()
 
 setTimeout(() => {
   var account_db = new PouchDB(
-    `https://${process.env.backend}:4000/database/account`
+    `https://${process.env.backend}/database/account`
   );
 
   account_db.info()
@@ -39,7 +39,7 @@ setTimeout(() => {
       account_db.put(accounts);
     }).catch(function (err) {
       console.log(`Error: ${JSON.stringify(err, null, 2)}`);
-    })  ;
+    });
   });
 }, 4000);
 
