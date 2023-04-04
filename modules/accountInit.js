@@ -4,7 +4,7 @@ const require = createRequire(import.meta.url);
 
 var PouchDB = require("pouchdb");
 
-import * as dotenv require('dotenv').config()
+require('dotenv').config()
 
 var account_db = new PouchDB(
   `https://${process.env.backend}/database/account`
