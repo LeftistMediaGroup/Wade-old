@@ -13,7 +13,6 @@ var PouchDB = require("pouchdb");
 
 
 import register from './routes/register.js';
-import database from './routes/database.js';
 
 
 // parse application/x-www-form-urlencoded
