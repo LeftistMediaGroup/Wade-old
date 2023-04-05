@@ -33,6 +33,9 @@ app.use('/database', require('express-pouchdb')(PouchDB.defaults({
 })));
 var accounts = new PouchDB('accounts');
 
+app.get('/', (req, res) => {
+  res.send('root')
+})
 
 app.listen(443, function () {
   console.log('CORS-enabled web server listening on port 4000')
