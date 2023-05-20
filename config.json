@@ -1,6 +1,0 @@
-{
-    "log": {
-        "level": "info",
-        "file": "./logs/log.txt"
-    }
-}
