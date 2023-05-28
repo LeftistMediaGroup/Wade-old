@@ -9,9 +9,6 @@ import Calendar from "./routes/calendar.js";
 import Music from "./routes/music.js";
 import Sync from "./routes/sync.js";
 
-
-import  * as evs from 'express-video-stream'; 
-
 import { fileURLToPath } from 'url';
 
 
@@ -31,8 +28,7 @@ var logger = require('morgan');
 var cors = require('cors');
 var FileStore = require('session-file-store')(session);
 
-
-// Express Video Stream
+const evs = require('express-video-stream') // Express Video Stream
 
 
 var privateKey = fs.readFileSync('./ssl/wade_key.pem');
@@ -113,6 +109,7 @@ export function Express_Init_Start() {
     app.use('/music', Music);
     app.use('/syncIn', Sync);
 
+    evs.setConfig(JSON.parse(fs.readFileSync('./evsConfig.json'))); //Load config from file
 
     app.use(evs.middleware); //Use streaming middleware
 

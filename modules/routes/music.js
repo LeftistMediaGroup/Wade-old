@@ -17,8 +17,6 @@ var router = express.Router();
 
 router.get('/', (req, res) => { 
     try {
-        evs.addVideo("failed_state", "./Revolution/Failed_State.mp3");
-
         var page = fs.readFileSync("./modules/routes/index.html"); // Load html into buffer
         res.send(page + ' ');
     } catch (err) {
