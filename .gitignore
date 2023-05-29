@@ -1,1 +1,4 @@
 /Revolution
+/node_modules
+/.env
+/database
