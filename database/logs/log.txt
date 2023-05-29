@@ -77,3 +77,11 @@
 [Sat, 27 May 2023 04:28:27 GMT] [info] [<0.000.0>] ::ffff:127.0.0.1 - - GET /manifest/ 200
 [Sat, 27 May 2023 04:28:27 GMT] [info] [<0.000.0>] ::ffff:127.0.0.1 - - GET /manifest/Manifest? 200
 [Sat, 27 May 2023 04:28:27 GMT] [info] [<0.000.0>] ::ffff:127.0.0.1 - - GET /manifest/Main? 200
+[Sun, 28 May 2023 01:48:39 GMT] [info] [<0.000.0>] ::ffff:127.0.0.1 - - GET /manifest/ 200
+[Sun, 28 May 2023 01:48:39 GMT] [info] [<0.000.0>] ::ffff:127.0.0.1 - - GET /manifest/ 200
+[Sun, 28 May 2023 01:48:39 GMT] [info] [<0.000.0>] ::ffff:127.0.0.1 - - GET /manifest/ 200
+[Sun, 28 May 2023 01:48:39 GMT] [info] [<0.000.0>] ::ffff:127.0.0.1 - - GET /manifest/Manifest? 200
+[Sun, 28 May 2023 01:48:39 GMT] [info] [<0.000.0>] ::ffff:127.0.0.1 - - GET /manifest/Main? 200
+[Sun, 28 May 2023 01:50:33 GMT] [info] [<0.000.0>] ::ffff:100.106.167.126 - - GET /manifest/ 200
+[Sun, 28 May 2023 01:50:33 GMT] [info] [<0.000.0>] ::ffff:100.106.167.126 - - GET /manifest/ 200
+[Sun, 28 May 2023 01:50:33 GMT] [info] [<0.000.0>] ::ffff:100.106.167.126 - - GET /manifest/Manifest? 200
