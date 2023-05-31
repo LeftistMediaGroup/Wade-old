@@ -13,8 +13,6 @@ var PouchDB = require("pouchdb");
 
 
 export function Database_init_start() {
-    process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
-
     setTimeout(() => {
         new SyncInit();
     }, 5000);
