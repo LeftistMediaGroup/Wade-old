@@ -13,7 +13,7 @@ export function GetManifest() {
 
     var PouchDB = require("pouchdb");
 
-    var manifest_db = new PouchDB(`https://${process.env.host}:${process.env.port}/sync/manifest`);
+    var manifest_db = new PouchDB(`https://${process.env.host}/sync/manifest`);
 
     manifest_db.info().then(function () {
         manifest_db.get("Manifest").then(function (result) {
