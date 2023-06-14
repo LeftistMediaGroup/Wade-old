@@ -31,10 +31,10 @@ var FileStore = require('session-file-store')(session);
 const evs = require('express-video-stream') // Express Video Stream
 
 
-//var privateKey = fs.readFileSync('./ssl/wade_key.pem');
-//var certificate = fs.readFileSync('./ssl/wade_cert.pem');
+var privateKey = fs.readFileSync('./ssl/wade_key.pem');
+var certificate = fs.readFileSync('./ssl/wade_cert.pem');
 
-//var credentials = {key: privateKey, cert: certificate};
+var credentials = {key: privateKey, cert: certificate};
 
 var https = require('https');
 
@@ -47,7 +47,7 @@ export function Express_Init_Start() {
     var express = require('express');
     var app = express();
 
-    var httpsServer = https.createServer(app);
+    var httpsServer = https.createServer(credentials, app);
 
     app.use(cookieParser('This is a secret'));
 

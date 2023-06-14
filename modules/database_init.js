@@ -17,7 +17,7 @@ export function Database_init_start() {
         new SyncInit();
     }, 5000);
 
-    var account_db = new PouchDB(`https://${process.env.host}/database/manifest`);
+    var account_db = new PouchDB(`https://${process.env.host}:${process.env.port}/database/manifest`);
     account_db.info().then(function (info) {
         console.log(`Info: ${JSON.stringify(info)}`);
     });
