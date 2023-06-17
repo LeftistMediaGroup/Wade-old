@@ -23,7 +23,7 @@ router.post('/register_admin', (req, res) => {
   
     console.log(`Data: ${JSON.stringify(data, null, 2)}`)
       
-    var main_db = new PouchDB(`https://${process.env.REACT_APP_host}:${process.env.REACT_APP_port}/database/manifest`);
+    var main_db = new PouchDB(`https://${process.env.host}/database/manifest`);
     
     main_db.info().then(function (info) {
       console.log(`Info: ${JSON.stringify(info)}`);
@@ -95,7 +95,7 @@ function Login_Admin(req, res) {
 
     let password = req.body.password;
     
-    var main_db = new PouchDB(`https://${process.env.REACT_APP_host}:${process.env.REACT_APP_port}/database/manifest`);
+    var main_db = new PouchDB(`https://${process.env.host}/database/manifest`);
       
       main_db.info().then(function (info) {
         main_db.get("Main").then(function (result) {

@@ -11,7 +11,7 @@ var PouchDB = require("pouchdb");
 
 
 router.get('/task_add', (req, res) => { 
-    var main_db = new PouchDB(`https://${process.env.REACT_APP_host}:${process.env.REACT_APP_port}/database/manifest`);
+    var main_db = new PouchDB(`https://${process.env.host}/database/manifest`);
     
     let event = req.body.data;
 

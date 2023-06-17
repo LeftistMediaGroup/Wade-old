@@ -3,3 +3,5 @@
 /.env
 /database
 /ssl
+/database/*
+/package-lock.json

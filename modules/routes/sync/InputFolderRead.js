@@ -10,7 +10,7 @@ const require = createRequire(import.meta.url);
 /*
 var PouchDB = require('pouchdb');
 
-var manifest_db = new PouchDB(`https://${process.env.REACT_APP_host}:${process.env.REACT_APP_port}/sync/manifest`);
+var manifest_db = new PouchDB(`https://${process.env.host}/sync/manifest`);
 */
 
 

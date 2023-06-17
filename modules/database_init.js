@@ -13,13 +13,11 @@ var PouchDB = require("pouchdb");
 
 
 export function Database_init_start() {
-    process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
-
     setTimeout(() => {
         new SyncInit();
     }, 5000);
 
-    var account_db = new PouchDB(`https://${process.env.REACT_APP_host}:${process.env.REACT_APP_port}/database/manifest`);
+    var account_db = new PouchDB(`https://${process.env.host}:${process.env.port}/database/manifest`);
     account_db.info().then(function (info) {
         console.log(`Info: ${JSON.stringify(info)}`);
     });
