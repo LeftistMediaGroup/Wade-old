@@ -5,3 +5,4 @@
 /ssl
 /database/*
 /package-lock.json
+/logs/log.txt
