@@ -7,14 +7,44 @@ const require = createRequire(import.meta.url);
 var PouchDB = require("pouchdb");
 
 import Parser from "rss-parser";
-let parser = new Parser();
+let parser = new Parser({
+  defaultRSS: 2.0,
+  xml2js: {
+    emptyTag: "--EMPTY--",
+  },
+});
 
 async function RefreshFeed() {
   console.log(`Refreshing RSS feed \n`);
 
-  let feed = await parser.parseURL("https://www.reddit.com/.rss");
+  let feedSourceList = [
+    {
+      name: "Reddit",
+      url: "https://www.reddit.com/.rss",
+    },
+    {
+      name: "The Anarchist Library",
+      url: "theanarchistlibrary.org/feed.rss",
+    },
+  ];
 
-  console.log(`Refreshed Feed:\n${feed.title} \n`);
+  let feed = { body: {} };
+
+  feedSourceList.forEach(async (item) => {
+    let body = { name: "Not Loaded", url: "Not Loaded" };
+
+    try {
+      body = await parser.parseURL(item.url);
+    } catch (err) {
+      console.log(`Error, Could not load: ${item.name}`);
+    }
+
+    if (typeof body.title !== "undefined") {
+      console.log(`Loaded: ${JSON.stringify(body.title)}`);
+    }
+
+    feed.body[item.name] = JSON.parse(JSON.stringify(body));
+  });
 }
 
 function getFeed() {
@@ -26,7 +56,7 @@ function getFeed() {
   });
 }
 
-export default function startRSS() {
+export default async function startRSS() {
   console.log(`Starting RSS Server`);
-  RefreshFeed();
+  await RefreshFeed();
 }
