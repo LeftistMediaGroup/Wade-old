@@ -6,45 +6,24 @@ const require = createRequire(import.meta.url);
 
 var PouchDB = require("pouchdb");
 
-import Parser from "rss-parser";
-let parser = new Parser({
-  defaultRSS: 2.0,
-  xml2js: {
-    emptyTag: "--EMPTY--",
-  },
-});
+const RssFeedEmitter = require("rss-feed-emitter");
+const feeder = new RssFeedEmitter();
 
 async function RefreshFeed() {
   console.log(`Refreshing RSS feed \n`);
 
-  let feedSourceList = [
-    {
-      name: "Reddit",
-      url: "https://www.reddit.com/.rss",
-    },
-    {
-      name: "The Anarchist Library",
-      url: "theanarchistlibrary.org/feed.rss",
-    },
-  ];
-
-  let feed = { body: {} };
-
-  feedSourceList.forEach(async (item) => {
-    let body = { name: "Not Loaded", url: "Not Loaded" };
-
-    try {
-      body = await parser.parseURL(item.url);
-    } catch (err) {
-      console.log(`Error, Could not load: ${item.name}`);
-    }
-
-    if (typeof body.title !== "undefined") {
-      console.log(`Loaded: ${JSON.stringify(body.title)}`);
-    }
-
-    feed.body[item.name] = JSON.parse(JSON.stringify(body));
+  feeder.add({
+    url: ["https://www.reddit.com/.rss", "https://theanarchistlibrary.org/feed"],
+    refresh: 2000,
   });
+
+  feeder.on("new-item", function (item) {
+    console.log(`Item: ${JSON.stringify(item, null, 2)}`);
+  });
+
+  feeder.on("error", console.error);
+
+  //feeder.list;
 }
 
 function getFeed() {
