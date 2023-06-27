@@ -1,6 +1,6 @@
 import { Express_Init_Start } from "./modules/express_init.js";
 import { Database_init_start } from "./modules/database_init.js";
-
+import startRSS from "./modules/RSS/rss.js";
 
 function Start() {
     new Promise(() => {
@@ -15,6 +15,7 @@ function Start() {
 
     function resolveExpressInit() {
         Database_init_start();
+        startRSS();
     }
 
     function rejectExpressInit(err) {
