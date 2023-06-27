@@ -885,3 +885,8 @@
 [Tue, 27 Jun 2023 17:11:04 GMT] [info] [<0.000.0>] ::1 - - GET /manifest/ 200
 [Tue, 27 Jun 2023 17:11:04 GMT] [info] [<0.000.0>] ::1 - - GET /manifest/Manifest? 200
 [Tue, 27 Jun 2023 17:11:04 GMT] [info] [<0.000.0>] ::1 - - GET /manifest/Main? 200
+[Tue, 27 Jun 2023 17:11:33 GMT] [info] [<0.000.0>] ::1 - - GET /manifest/ 200
+[Tue, 27 Jun 2023 17:11:33 GMT] [info] [<0.000.0>] ::1 - - GET /manifest/ 200
+[Tue, 27 Jun 2023 17:11:33 GMT] [info] [<0.000.0>] ::1 - - GET /manifest/ 200
+[Tue, 27 Jun 2023 17:11:33 GMT] [info] [<0.000.0>] ::1 - - GET /manifest/Manifest? 200
+[Tue, 27 Jun 2023 17:11:33 GMT] [info] [<0.000.0>] ::1 - - GET /manifest/Main? 200
