@@ -10,11 +10,11 @@ import Parser from "rss-parser";
 let parser = new Parser();
 
 async function RefreshFeed() {
-  console.log(`Refreshing RSS feed`);
+  console.log(`Refreshing RSS feed \n`);
 
   let feed = await parser.parseURL("https://www.reddit.com/.rss");
 
-  console.log(`Feed: ${feed.title} Refreshed`);
+  console.log(`Refreshed Feed:\n ${feed.title} \n`);
 }
 
 function getFeed() {
@@ -27,5 +27,6 @@ function getFeed() {
 }
 
 export default function startRSS() {
+  console.log(`Starting RSS Server`);
   RefreshFeed();
 }

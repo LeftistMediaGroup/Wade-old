@@ -11,7 +11,9 @@ dotenv.config();
 
 var PouchDB = require("pouchdb");
 
-export function Database_init_start() {
+export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
+  let returnValue = 0;
+
   setTimeout(() => {
     new SyncInit();
   }, 5000);
@@ -36,8 +38,6 @@ export function Database_init_start() {
         .then(function () {
           account_db.get("Main").then(function (main) {
             console.log(`Returned Main: ${JSON.stringify(main, null, 2)}`);
-
-            console.log(`\n Database Online!\n\n`);
           });
         })
         .catch(function (err) {
@@ -55,80 +55,97 @@ export function Database_init_start() {
                 })
                 .then(function () {
                   //Put Main file
-                  account_db
-                    .put({
-                      _id: "Main",
-                      users: {},
-                      system: {},
-                      calendar: {},
-                      kanban: {},
-                      RSS: {}
-                    })
-                    .then(function (result) {
-                      console.log(
-                        `Created Main: ${JSON.stringify(result, null, 2)}`
-                      );
-                    })
-                    .catch(function (err) {
-                      console.log(`Error: ${JSON.stringify(err, null, 2)}`);
-                    });
+                  function account() {
+                    account_db
+                      .put({
+                        _id: "Main",
+                        users: {},
+                        system: {},
+                        calendar: {},
+                        kanban: {},
+                        RSS: {},
+                      })
+                      .then(function (result) {
+                        console.log(
+                          `Created Main: ${JSON.stringify(result, null, 2)}`
+                        );
+                      })
+                      .catch(function (err) {
+                        console.log(`Error: ${JSON.stringify(err, null, 2)}`);
+                      });
+                  }
 
                   // Put Calendar file
-                  account_db
-                    .put({
-                      _id: "Calendar",
-                      events: {},
-                    })
-                    .then(function (result) {
-                      console.log(
-                        `Created Calendar: ${JSON.stringify(result, null, 2)}`
-                      );
-                    })
-                    .catch(function (err) {
-                      console.log(`Error: ${JSON.stringify(err, null, 2)}`);
-                    });
+                  function calendar() {
+                    account_db
+                      .put({
+                        _id: "Calendar",
+                        events: {},
+                      })
+                      .then(function (result) {
+                        console.log(
+                          `Created Calendar: ${JSON.stringify(result, null, 2)}`
+                        );
+                      })
+                      .catch(function (err) {
+                        console.log(`Error: ${JSON.stringify(err, null, 2)}`);
+                      });
+                  }
 
                   // Put Kanban file
-                  account_db
-                    .put({
-                      _id: "Kanban",
-                      columns: {},
-                      tasks: {},
-                    })
-                    .then(function (result) {
-                      console.log(
-                        `Created Kanban: ${JSON.stringify(result, null, 2)}`
-                      );
-                    })
-                    .catch(function (err) {
-                      console.log(`Error: ${JSON.stringify(err, null, 2)}`);
-                    });
+                  function kanban() {
+                    account_db
+                      .put({
+                        _id: "Kanban",
+                        columns: {},
+                        tasks: {},
+                      })
+                      .then(function (result) {
+                        console.log(
+                          `Created Kanban: ${JSON.stringify(result, null, 2)}`
+                        );
+                      })
+                      .catch(function (err) {
+                        console.log(`Error: ${JSON.stringify(err, null, 2)}`);
+                      });
+                  }
 
                   // Put RSS file
-                  account_db
-                    .put({
-                      _id: "RSS",
-                      "RSS": {}
-                    })
-                    .then(function (result) {
-                      console.log(
-                        `Created RSS: ${JSON.stringify(result, null, 2)}`
-                      );
-                    })
-                    .catch(function (err) {
-                      console.log(`Error: ${JSON.stringify(err, null, 2)}`);
-                    });
+                  function rss() {
+                    account_db
+                      .put({
+                        _id: "RSS",
+                        RSS: {},
+                      })
+                      .then(function (result) {
+                        console.log(
+                          `Created RSS: ${JSON.stringify(result, null, 2)}`
+                        );
+                      })
+                      .catch(function (err) {
+                        console.log(`Error: ${JSON.stringify(err, null, 2)}`);
+                      });
+                  }
+
+                  Promise.all([account, calendar, kanban, rss]).then(() => {
+                    console.log(`\n Database Online!\n\n`);
+
+                    resolveDatabaseInit();
+                  });
                 })
                 .catch(function (err) {
                   console.log(`Error!: ${JSON.stringify(err, null, 2)}`);
+                  rejectDatabaseInit(err);
                 });
             } else {
               console.log(`Error!: ${JSON.stringify(err, null, 2)}`);
+              rejectDatabaseInit(err);
             }
           }
         });
     })
     .catch(function (err) {
       console.log(`Error:! ${JSON.stringify(err, null, 2)}`);
+      rejectDatabaseInit(err);
     });
 }
