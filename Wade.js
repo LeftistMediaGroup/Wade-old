@@ -14,11 +14,25 @@ function Start() {
 
 
     function resolveExpressInit() {
-        Database_init_start();
-        startRSS();
+        new Promise(() => {
+            try {
+                let value = 1
+                Database_init_start();
+                resolveDatabaseInit(value);
+            } catch (err) {
+                rejectDatabaseInit(err)
+            };
+        });
     }
 
+    function resolveDatabaseInit(){
+        startRSS();
+    };
+
     function rejectExpressInit(err) {
+        console.log(`Error: ${JSON.stringify(err, null, 2)}`);
+    }
+    function rejectDatabaseInit(err) {
         console.log(`Error: ${JSON.stringify(err, null, 2)}`);
     }
 };
