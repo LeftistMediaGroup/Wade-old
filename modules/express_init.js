@@ -8,6 +8,7 @@ import System from "./routes/system.js";
 import Calendar from "./routes/calendar.js";
 import Music from "./routes/music.js";
 import Sync from "./routes/sync.js";
+import RSS from "./routes/rss.js";
 
 import { fileURLToPath } from 'url';
 
@@ -102,12 +103,18 @@ export function Express_Init_Start() {
         prefix: './database/'
     })));
 
+    app.use('/rss', require('express-pouchdb')(PouchDB.defaults({
+        prefix: './database/'
+    })));
+
     app.disable('etag');
 
     app.use('/system', System);
     app.use('/calendar', Calendar);
     app.use('/music', Music);
     app.use('/syncIn', Sync);
+    app.use('/rss', RSS);
+
 
     evs.setConfig(JSON.parse(fs.readFileSync('./evsConfig.json'))); //Load config from file
 
