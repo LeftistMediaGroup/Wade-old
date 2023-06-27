@@ -2,7 +2,6 @@
 import { createRequire } from "module";
 
 import * as dotenv from "dotenv";
-import { SyncInit } from "./sync/sync_init.js";
 
 //End require
 const require = createRequire(import.meta.url);
@@ -12,17 +11,11 @@ dotenv.config();
 var PouchDB = require("pouchdb");
 
 export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
-  let returnValue = 0;
-
-  setTimeout(() => {
-    new SyncInit();
-  }, 5000);
-
   var account_db = new PouchDB(
     `https://${process.env.host}:${process.env.port}/database/manifest`
   );
   account_db.info().then(function (info) {
-    console.log(`Info: ${JSON.stringify(info)}`);
+    console.log(`\nManifest Returned Successfully\n`);
   });
   account_db
     .info()
@@ -37,7 +30,7 @@ export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
         })
         .then(function () {
           account_db.get("Main").then(function (main) {
-            console.log(`Returned Main: ${JSON.stringify(main, null, 2)}`);
+            resolveDatabaseInit();
           });
         })
         .catch(function (err) {
@@ -55,25 +48,23 @@ export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
                 })
                 .then(function () {
                   //Put Main file
-                  function account() {
-                    account_db
-                      .put({
-                        _id: "Main",
-                        users: {},
-                        system: {},
-                        calendar: {},
-                        kanban: {},
-                        RSS: {},
-                      })
-                      .then(function (result) {
-                        console.log(
-                          `Created Main: ${JSON.stringify(result, null, 2)}`
-                        );
-                      })
-                      .catch(function (err) {
-                        console.log(`Error: ${JSON.stringify(err, null, 2)}`);
-                      });
-                  }
+                  account_db
+                    .put({
+                      _id: "Main",
+                      users: {},
+                      system: {},
+                      calendar: {},
+                      kanban: {},
+                      RSS: {},
+                    })
+                    .then(function (result) {
+                      console.log(
+                        `Created Main: ${JSON.stringify(result, null, 2)}`
+                      );
+                    })
+                    .catch(function (err) {
+                      console.log(`Error: ${JSON.stringify(err, null, 2)}`);
+                    });
 
                   // Put Calendar file
                   function calendar() {
@@ -127,11 +118,14 @@ export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
                       });
                   }
 
-                  Promise.all([account, calendar, kanban, rss]).then(() => {
-                    console.log(`\n Database Online!\n\n`);
-
-                    resolveDatabaseInit();
-                  });
+                  new Promise(() => {
+                    calendar();
+                  })
+                    .then(kanban)
+                    .then(rss)
+                    .catch((err) => {
+                      console.log(`Error: ${err}`);
+                    });
                 })
                 .catch(function (err) {
                   console.log(`Error!: ${JSON.stringify(err, null, 2)}`);

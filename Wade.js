@@ -12,22 +12,18 @@ function Start() {
     }
   });
 
-  function resolveExpressInit() {
-    new Promise(() => {
-      Database_init_start(resolveDatabaseInit, rejectDatabaseInit);
-    });
+  function resolveDatabaseInit() {
+    console.log(`\nDatabase Online!\n`);
+
+    startRSS();
   }
 
-  function resolveDatabaseInit() {
-    startRSS();
+  function resolveExpressInit() {
+    Database_init_start(resolveDatabaseInit);
   }
 
   function rejectExpressInit(err) {
     console.log(`Error: ${JSON.stringify(err, null, 2)}`);
-  }
-  function rejectDatabaseInit(err) {
-    console.log(`Reject Database InitError: ${JSON.stringify(err, null, 2)}`);
-    resolveDatabaseInit();
   }
 }
 

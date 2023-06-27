@@ -14,7 +14,7 @@ async function RefreshFeed() {
 
   let feed = await parser.parseURL("https://www.reddit.com/.rss");
 
-  console.log(`Refreshed Feed:\n ${feed.title} \n`);
+  console.log(`Refreshed Feed:\n${feed.title} \n`);
 }
 
 function getFeed() {
