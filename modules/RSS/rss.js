@@ -31,7 +31,6 @@ class feedStore {
 
       feeder.add({
         url: [
-          "https://www.reddit.com/.rss",
           "https://theanarchistlibrary.org/feed",
           "https://itsgoingdown.org/feed",
           "https://freedomnews.org.uk/feed",
