@@ -1637,3 +1637,11 @@
 [Tue, 27 Jun 2023 23:02:15 GMT] [info] [<0.000.0>] ::1 - - PUT /manifest/Manifest 201
 [Tue, 27 Jun 2023 23:02:15 GMT] [info] [<0.000.0>] ::1 - - PUT /manifest/Main 201
 [Tue, 27 Jun 2023 23:02:15 GMT] [info] [<0.000.0>] ::1 - - PUT /manifest/Calendar 201
+[Tue, 27 Jun 2023 23:04:44 GMT] [info] [<0.000.0>] ::1 - - GET /manifest/ 404
+[Tue, 27 Jun 2023 23:04:46 GMT] [info] [<0.000.0>] ::1 - - PUT /manifest/ 201
+[Tue, 27 Jun 2023 23:04:46 GMT] [info] [<0.000.0>] ::1 - - GET /manifest/ 200
+[Tue, 27 Jun 2023 23:04:46 GMT] [info] [<0.000.0>] ::1 - - GET /manifest/ 200
+[Tue, 27 Jun 2023 23:04:46 GMT] [info] [<0.000.0>] ::1 - - GET /manifest/Manifest? 404
+[Tue, 27 Jun 2023 23:04:46 GMT] [info] [<0.000.0>] ::1 - - PUT /manifest/Manifest 201
+[Tue, 27 Jun 2023 23:04:47 GMT] [info] [<0.000.0>] ::1 - - PUT /manifest/Main 201
+[Tue, 27 Jun 2023 23:04:47 GMT] [info] [<0.000.0>] ::1 - - PUT /manifest/Calendar 201
