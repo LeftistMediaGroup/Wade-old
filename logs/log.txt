@@ -1802,3 +1802,11 @@
 [Wed, 28 Jun 2023 13:17:54 GMT] [info] [<0.000.0>] ::1 - - PUT /rss/Making%20Life%20HELL%20For%20Scammers 201
 [Wed, 28 Jun 2023 13:19:02 GMT] [info] [<0.000.0>] ::1 - - PUT /rss/Neighbors%20dog%20came%20into%20our%20fenced%20yard%20and%20killed%20our%20cat%20%F0%9F%92%94 201
 [Wed, 28 Jun 2023 13:20:52 GMT] [info] [<0.000.0>] ::1 - - PUT /rss/Take%20that%20chivalry 201
+[Wed, 28 Jun 2023 14:41:39 GMT] [info] [<0.000.0>] ::1 - - GET /manifest/ 404
+[Wed, 28 Jun 2023 14:41:45 GMT] [info] [<0.000.0>] ::1 - - PUT /manifest/ 201
+[Wed, 28 Jun 2023 14:41:45 GMT] [info] [<0.000.0>] ::1 - - GET /manifest/ 200
+[Wed, 28 Jun 2023 14:41:45 GMT] [info] [<0.000.0>] ::1 - - GET /manifest/ 200
+[Wed, 28 Jun 2023 14:41:45 GMT] [info] [<0.000.0>] ::1 - - GET /manifest/Manifest? 404
+[Wed, 28 Jun 2023 14:41:45 GMT] [info] [<0.000.0>] ::1 - - PUT /manifest/Manifest 201
+[Wed, 28 Jun 2023 14:41:45 GMT] [info] [<0.000.0>] ::1 - - PUT /manifest/Calendar 201
+[Wed, 28 Jun 2023 14:41:45 GMT] [info] [<0.000.0>] ::1 - - PUT /manifest/Main 201
