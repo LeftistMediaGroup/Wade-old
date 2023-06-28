@@ -23,8 +23,10 @@ class feedStore {
     var RSS_db = new PouchDB(
       `https://${process.env.host}:${process.env.port}/database/rss`
     );
-
-    RSS_db.info().then(function (info) {
+    RSS_db.allDocs({
+      include_docs: true,
+      attachments: true,
+    }).then(function (info) {
       console.log(`RSS From Database: ${JSON.stringify(info)}`);
 
       console.log(`Refreshing RSS feed \n`);
