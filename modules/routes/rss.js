@@ -26,7 +26,7 @@ router.get("/get_rss", (req, res) => {
       attachments: true,
     })
       .then(function (result) {
-        res.json(result);
+        res.json(`Result: ${result}`);
         res.end();
       })
       .catch(function (err) {
