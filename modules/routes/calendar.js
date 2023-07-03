@@ -44,7 +44,7 @@ router.post("/insert_event", (req, res) => {
     console.log(`Event: ${JSON.stringify(event, null, 2)}`);
 
     var main_db = new PouchDB(
-      `https://${process.env.host}:${process.env.port}/database/manifest`
+      `http://${process.env.host}:${process.env.port}/database/manifest`
     );
 
     main_db.info().then(function (info) {
@@ -87,7 +87,7 @@ router.post("/update_event", (req, res) => {
 
     console.log(`Event: ${JSON.stringify(event, null, 2)}`);
 
-    var main_db = new PouchDB(`https://${process.env.host}/database/manifest`);
+    var main_db = new PouchDB(`http://${process.env.host}/database/manifest`);
 
     main_db.info().then(function (info) {
       console.log(`Info: ${JSON.stringify(info)}`);
@@ -135,7 +135,7 @@ router.post("/delete_event", (req, res) => {
 
 router.get("/get_events", (req, res) => {
   var main_db = new PouchDB(
-    `https://${process.env.host}:${process.env.port}/database/manifest`
+    `http://${process.env.host}:${process.env.port}/database/manifest`
   );
 
   main_db.info().then(function () {

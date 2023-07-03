@@ -12,7 +12,7 @@ var PouchDB = require("pouchdb");
 
 export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
   var account_db = new PouchDB(
-    `https://${process.env.host}:${process.env.port}/database/manifest`
+    `http://${process.env.host}:${process.env.port}/database/manifest`
   );
   account_db.info().then(function (info) {
     console.log(`\nManifest Returned Successfully\n`);

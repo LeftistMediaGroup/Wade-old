@@ -33,7 +33,7 @@ var certificate = fs.readFileSync("./ssl/wade_cert.pem");
 
 var credentials = { key: privateKey, cert: certificate };
 
-var https = require("https");
+var http = require("http");
 
 dotenv.config();
 
@@ -43,7 +43,7 @@ export function Express_Init_Start() {
   var express = require("express");
   var app = express();
 
-  var httpsServer = https.createServer(credentials, app);
+  //var httpServer = http.createServer(credentials, app);
 
   app.use(cookieParser("This is a secret"));
 
@@ -130,7 +130,7 @@ export function Express_Init_Start() {
   app.use("/calendar", Calendar);
   app.use("/music", Music);
   app.use("/syncIn", Sync);
-  app.use("/rss", RSS);
+  app.use("/rss_out", RSS);
 
   evs.setConfig(JSON.parse(fs.readFileSync("./evsConfig.json"))); //Load config from file
 
@@ -148,12 +148,12 @@ export function Express_Init_Start() {
 
   let port = 3001;
 
-  httpsServer.listen(port, () => {
-    console.log(`Express server listening on port ${port}\n`);
-  });
+  //httpServer.listen(port, () => {
+    //console.log(`Express server listening on port ${port}\n`);
+  //});
 
-  //app.listen(port);
-  //console.log(`Server listening on port: ${port}`);
+  app.listen(port);
+  console.log(`Server listening on port: ${port}`);
 
   return true;
 }

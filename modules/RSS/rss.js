@@ -21,7 +21,7 @@ class feedStore {
 
   getFeed() {
     var RSS_db = new PouchDB(
-      `https://${process.env.host}:${process.env.port}/database/rss`
+      `http://${process.env.host}:${process.env.port}/database/rss`
     );
     RSS_db.allDocs({
       include_docs: true,
@@ -33,10 +33,10 @@ class feedStore {
 
       feeder.add({
         url: [
-          "https://theanarchistlibrary.org/feed",
-          "https://itsgoingdown.org/feed",
-          "https://freedomnews.org.uk/feed",
-          "https://anarchistnews.org/rss.xml",
+          "http://theanarchistlibrary.org/feed",
+          "http://itsgoingdown.org/feed",
+          "http://freedomnews.org.uk/feed",
+          "http://anarchistnews.org/rss.xml",
         ],
         refresh: 2000,
       });
