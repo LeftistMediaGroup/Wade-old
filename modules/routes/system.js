@@ -23,7 +23,7 @@ router.post('/register_admin', (req, res) => {
   
     console.log(`Data: ${JSON.stringify(data, null, 2)}`)
       
-    var main_db = new PouchDB(`http://${process.env.host}/database/manifest`);
+    var main_db = new PouchDB(`http://${process.env.host}:${process.env.port}/database/manifest`);
     
     main_db.info().then(function (info) {
       console.log(`Info: ${JSON.stringify(info)}`);

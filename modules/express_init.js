@@ -87,8 +87,13 @@ export function Express_Init_Start() {
     })
   );
 
+  // parse application/x-www-form-urlencoded
   app.use(bodyParser.urlencoded({ extended: false }));
+
+  // parse application/json
   app.use(bodyParser.json());
+
+  app.use(express.json());
 
   app.use(logger("dev"));
   app.use(express.json());
@@ -105,6 +110,10 @@ export function Express_Init_Start() {
       })
     )
   );
+
+  var data = new PouchDB("data", {
+    prefix: "./database/",
+  });
 
   app.use(
     "/sync",
@@ -149,11 +158,11 @@ export function Express_Init_Start() {
   let port = 3001;
 
   //httpServer.listen(port, () => {
-    //console.log(`Express server listening on port ${port}\n`);
+  //console.log(`Express server listening on port ${port}\n`);
   //});
 
   app.listen(port);
-  console.log(`Server listening on port: ${port}`);
+  console.log(`Server listening on port: ${port}\n`);
 
   return true;
 }

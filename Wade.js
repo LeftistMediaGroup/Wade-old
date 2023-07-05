@@ -15,7 +15,7 @@ async function Start() {
   async function resolveDatabaseInit() {
     console.log(`\nDatabase Online!\n`);
 
-    await startRSS();
+    //await startRSS();
   }
 
   function resolveExpressInit() {
