@@ -35,6 +35,10 @@ var credentials = { key: privateKey, cert: certificate };
 
 var http = require("http");
 
+var PouchDB = require("pouchdb");
+var Auth = require('pouchdb-auth')
+PouchDB.plugin(Auth)
+
 dotenv.config();
 
 export function Express_Init_Start() {
@@ -42,6 +46,12 @@ export function Express_Init_Start() {
 
   var express = require("express");
   var app = express();
+
+  app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+  });
+  
 
   //var httpServer = http.createServer(credentials, app);
 
@@ -78,14 +88,9 @@ export function Express_Init_Start() {
     })
   );
 
-  app.use(
-    cors({
-      //origin: true,
-      origin: true,
-      optionsSuccessStatus: 200,
-      credentials: true,
-    })
-  );
+  app.use(cors({credentials: true, origin: "http://localhost:5000" }));
+
+
 
   // parse application/x-www-form-urlencoded
   app.use(bodyParser.urlencoded({ extended: false }));
@@ -107,6 +112,7 @@ export function Express_Init_Start() {
     require("express-pouchdb")(
       PouchDB.defaults({
         prefix: "./database/",
+        skip_setup: true,
       })
     )
   );

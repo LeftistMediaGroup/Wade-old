@@ -17,10 +17,8 @@ export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
 
   data_db
     .get("Main")
-    .then(function (main) {
-      console.log(`\nReturned Main: ${JSON.stringify(main, null, 2)}\n`);
-
-      console.log(`Database Online!`);
+    .then(function () {
+      console.log(`\nMain Found\n`);
     })
     .catch(function (err) {
       if (err) {
@@ -36,15 +34,26 @@ export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
 
           //Put Main File
           function Main() {
-            data_db.put({
-              _id: "Main",
-              users: {},
-              system: {},
-              calendar: {},
-              kanban: {},
-              RSS: {},
-              Back: {},
-            });
+            data_db
+              .put({
+                _id: "Main",
+                users: {},
+                system: {},
+                calendar: {},
+                kanban: {},
+                rss: {},
+                back_auth: [
+                  {
+                    back1_username: process.env.back1_username,
+                    back1_password: process.env.back1_password,
+                  },
+                ],
+              })
+              .then(function (main) {
+                console.log(`Main returned: ${JSON.stringify(main, null, 2)}`);
+
+                //log_in();
+              });
           }
 
           // Put Calendar file
@@ -52,7 +61,7 @@ export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
             data_db
               .put({
                 _id: "Calendar",
-                events: {},
+                events: [],
               })
               .catch(function (err) {
                 console.log(`Error: ${JSON.stringify(err, null, 2)}`);
@@ -89,11 +98,18 @@ export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
               });
           }
 
-          Promise.all(Manifest(), Main(), calendar(), rss())
-            .then(console.log(`\nDatabase Online!\n`))
+          Promise.all([Manifest(), Main(), calendar(), kanban(), rss()])
+            .then(function () {
+              console.log(`\nDatabase online!\n`);
+            })
             .catch((err) => {
               console.log(`Error: ${err}`);
             });
+        }
+        if (err.name === "unauthorized" || err.name === "forbidden") {
+          console.log(`Login name or password incorrect`);
+        } else {
+          console.log(`cosmic rays, a meteor, etc.`);
         }
       }
     });
