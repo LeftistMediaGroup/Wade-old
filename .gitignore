@@ -10,3 +10,4 @@ logs/log.txt
 sessions
 erase/.env
 .env
+pouchdb-fauxton-logic
