@@ -21,7 +21,7 @@ class feedStore {
 
   getFeed() {
     var RSS_db = new PouchDB(
-      `http://${process.env.host}:${process.env.port}/database/rss`
+      `https://${process.env.host}:${process.env.port}/database/rss`
     );
     RSS_db.allDocs({
       include_docs: true,

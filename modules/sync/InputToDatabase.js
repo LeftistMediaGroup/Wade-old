@@ -10,7 +10,7 @@ var PouchDB = require('pouchdb');
 export function InputToDatabase(fileData, filename) {  
     console.log(`InputToDatabase start`);
 
-    var manifest_db = new PouchDB(`http://${process.env.host}/sync/manifest`);
+    var manifest_db = new PouchDB(`https://${process.env.host}/sync/manifest`);
 
     manifest_db.putAttachment(`${filename}_Doc`, filename, fileData, 'text/plain').then(function () {
         return manifest_db.get(`${filename}_Doc`, { attachments: true });

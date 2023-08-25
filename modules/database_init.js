@@ -12,7 +12,7 @@ var PouchDB = require("pouchdb");
 
 export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
   var data_db = new PouchDB(
-    `http://${process.env.host}:${process.env.port}/database/data`
+    `https://${process.env.host}:${process.env.port}/database/data`
   );
 
   data_db

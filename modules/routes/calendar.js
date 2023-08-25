@@ -16,7 +16,7 @@ var strftime = require("strftime");
 dotenv.config();
 
 var data_db = new PouchDB(
-  `http://${process.env.host}:${process.env.port}/database/data`
+  `https://${process.env.host}:${process.env.port}/database/data`
 );
 
 router.post("/insert_event", (req, res) => {

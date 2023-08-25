@@ -13,7 +13,7 @@ var PouchDB = require("pouchdb");
 PouchDB.plugin(require("pouchdb-authentication"));
 
 let database = new PouchDB(
-  `http://${process.env.host}:${process.env.port}/database/data`
+  `https://${process.env.host}:${process.env.port}/database/data`
 );
 
 database

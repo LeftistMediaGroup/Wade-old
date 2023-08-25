@@ -14,7 +14,7 @@ var PouchDB = require("pouchdb");
 
 
 let databases = [
-    new PouchDB(`http://${process.env.host}:${process.env.port}/database/data`),
+    new PouchDB(`https://${process.env.host}:${process.env.port}/database/data`),
 ];
 
 databases.forEach((database) => {

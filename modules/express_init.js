@@ -8,6 +8,7 @@ import Calendar from "./routes/calendar.js";
 import Music from "./routes/music.js";
 import Sync from "./routes/sync.js";
 import RSS from "./routes/rss.js";
+import Library from "./routes/library.js";
 
 import { fileURLToPath } from "url";
 
@@ -34,10 +35,10 @@ var certificate = fs.readFileSync("./ssl/wade_cert.pem");
 var credentials = { key: privateKey, cert: certificate };
 
 var http = require("http");
-
+var https = require('https');
 var PouchDB = require("pouchdb");
-var Auth = require('pouchdb-auth')
-PouchDB.plugin(Auth)
+var Auth = require("pouchdb-auth");
+PouchDB.plugin(Auth);
 
 dotenv.config();
 
@@ -47,13 +48,14 @@ export function Express_Init_Start() {
   var express = require("express");
   var app = express();
 
+  var httpServer = https.createServer(credentials, app);
+  
   app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     next();
   });
-  
 
-  //var httpServer = http.createServer(credentials, app);
+  app.use(cors({ credentials: true, origin: "https://localhost:3000" }));
 
   app.use(cookieParser("This is a secret"));
 
@@ -87,10 +89,6 @@ export function Express_Init_Start() {
       secret: `This is a secret`,
     })
   );
-
-  app.use(cors({credentials: true, origin: "http://localhost:5000" }));
-
-
 
   // parse application/x-www-form-urlencoded
   app.use(bodyParser.urlencoded({ extended: false }));
@@ -146,6 +144,9 @@ export function Express_Init_Start() {
   app.use("/music", Music);
   app.use("/syncIn", Sync);
   app.use("/rss_out", RSS);
+  app.use("/library", Library);
+
+  app.use(express.static("public"));
 
   evs.setConfig(JSON.parse(fs.readFileSync("./evsConfig.json"))); //Load config from file
 
@@ -163,12 +164,12 @@ export function Express_Init_Start() {
 
   let port = 3001;
 
-  //httpServer.listen(port, () => {
-  //console.log(`Express server listening on port ${port}\n`);
-  //});
+  httpServer.listen(port, () => {
+  console.log(`Express server listening on port ${port}\n`);
+  });
 
-  app.listen(port);
-  console.log(`Server listening on port: ${port}\n`);
+  //app.listen(port);
+  //console.log(`Server listening on port: ${port}\n`);
 
   return true;
 }

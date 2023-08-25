@@ -12,7 +12,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 var data_db = new PouchDB(
-  `http://${process.env.host}:${process.env.port}/database/data`
+  `https://${process.env.host}:${process.env.port}/database/data`
 );
 
 router.post("/register_admin", (req, res) => {
@@ -27,14 +27,10 @@ router.post("/register_admin", (req, res) => {
 
     console.log(`Data: ${JSON.stringify(data, null, 2)}`);
 
-    var main_db = new PouchDB(
-      `http://${process.env.host}:${process.env.port}/database/manifest`
-    );
-
-    main_db.info().then(function (info) {
+    data_db.info().then(function (info) {
       console.log(`Info: ${JSON.stringify(info)}`);
 
-      main_db
+      data_db
         .get("Main")
         .then(function (result) {
           console.log(`Main: ${JSON.stringify(result, null, 2)}`);
@@ -44,7 +40,7 @@ router.post("/register_admin", (req, res) => {
 
             result.users[username] = data;
 
-            main_db
+            data_db
               .put(result)
               .then(function (result2) {
                 console.log(`Result2: ${JSON.stringify(result2, null, 2)}`);
@@ -114,10 +110,8 @@ function Login_Admin(req, res) {
 
     let password = req.body.password;
 
-    var main_db = new PouchDB(`http://${process.env.host}/database`);
-
-    main_db.info().then(function (info) {
-      main_db
+    data_db.info().then(function (info) {
+      data_db
         .get("Main")
         .then(function (result) {
           console.log(`Main: `);
@@ -181,10 +175,10 @@ router.post("/login_back", (req, res) => {
         req.session.username = data.username;
         console.log(`\nUsername Set: ${req.session.username}`);
 
-        res.json("success!");
+        res.json(`Username Set: ${req.session.username}`);
         res.end();
       } else {
-        res.json(`Already logged in as ${req.session.username}`);
+        res.send(`Already logged in as ${req.session.username}`);
         res.end();
       }
 
