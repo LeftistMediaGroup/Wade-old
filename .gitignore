@@ -11,3 +11,4 @@ sessions
 erase/.env
 .env
 pouchdb-fauxton-logic
+logs/log.txt

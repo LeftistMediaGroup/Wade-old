@@ -12,7 +12,9 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 var data_db = new PouchDB(
-  `https://${process.env.host}:${process.env.port}/database/data`
+  `https:/  </body>
+
+  </html>/${process.env.host}:${process.env.port}/database/data`
 );
 
 router.post("/register_admin", (req, res) => {
@@ -77,25 +79,21 @@ router.post("/register_admin", (req, res) => {
 });
 
 router.get("/is_loggedin", (req, res) => {
-  console.log(`Username: ${req.session.username}`);
-
-  console.log(`Session: ${JSON.stringify(req.session, null, 2)}`);
-  console.log(`Session cookie: ${JSON.stringify(req.session.cookie, null, 2)}`);
-  console.log(
-    `Session username: ${JSON.stringify(req.session.username, null, 2)}`
-  );
-
-  if (req.session.username !== undefined) {
-    res.json({
-      username: req.session.username,
-    });
-  } else {
-    res.json({
-      username: "Not logged in",
-    });
+  try {
+    if (req.session.username !== undefined) {
+      res.json({
+        username: req.session.username,
+      });
+      res.end();
+    } else {
+      res.json({
+        username: "Not logged in",
+      });
+      res.end();
+    }
+  } catch (err) {
+    console.log(`Error: ${err}`);
   }
-
-  res.end();
 });
 
 router.post("/login_admin", (req, res) => {
