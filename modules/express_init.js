@@ -35,7 +35,7 @@ var certificate = fs.readFileSync("./ssl/wade_cert.pem");
 var credentials = { key: privateKey, cert: certificate };
 
 var http = require("http");
-var https = require('https');
+var https = require("https");
 var PouchDB = require("pouchdb");
 var Auth = require("pouchdb-auth");
 PouchDB.plugin(Auth);
@@ -49,13 +49,14 @@ export function Express_Init_Start() {
   var app = express();
 
   var httpServer = https.createServer(credentials, app);
-  
-  app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    next();
-  });
 
-  app.use(cors({ credentials: true, origin: "*" }));
+  const corsOptions = {
+    origin: "*",
+    credentials: true,
+    optionSuccessStatus: 200,
+  };
+
+  app.use(cors(corsOptions));
 
   app.use(cookieParser("This is a secret"));
 
@@ -165,7 +166,7 @@ export function Express_Init_Start() {
   let port = 3001;
 
   httpServer.listen(port, () => {
-  console.log(`Express server listening on port ${port}\n`);
+    console.log(`Express server listening on port ${port}\n`);
   });
 
   //app.listen(port);
