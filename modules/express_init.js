@@ -55,7 +55,7 @@ export function Express_Init_Start() {
     next();
   });
 
-  app.use(cors({ credentials: true, origin: "https://localhost:3000" }));
+  app.use(cors({ credentials: true, origin: "https:leftistmediagroup.org" }));
 
   app.use(cookieParser("This is a secret"));
 
