@@ -48,29 +48,12 @@ export function Express_Init_Start() {
   var express = require("express");
   var app = express();
 
-  var httpServer = https.createServer(credentials, app);
-
-  const corsOptions = {
-    origin: "*",
-    credentials: true,
-    optionSuccessStatus: 200,
-    allowedHeaders: [
-      "Content-Type",
-      "Origin",
-      "X-Requested-With",
-      "Accept",
-      "x-client-key",
-      "x-client-token",
-      "x-client-secret",
-      "Authorization",
-    ],
-  };
-
-  app.use(cors(corsOptions));
   app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     next();
   });
+  
+  var httpServer = https.createServer(credentials, app);
 
   app.use(cookieParser("This is a secret"));
 
@@ -104,6 +87,9 @@ export function Express_Init_Start() {
       secret: `This is a secret`,
     })
   );
+
+  app.use(cors({credentials: true, origin: "http://localhost:5000" }));
+
 
   // parse application/x-www-form-urlencoded
   app.use(bodyParser.urlencoded({ extended: false }));
