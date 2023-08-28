@@ -54,6 +54,16 @@ export function Express_Init_Start() {
     origin: "*",
     credentials: true,
     optionSuccessStatus: 200,
+    allowedHeaders: [
+      "Content-Type",
+      "Origin",
+      "X-Requested-With",
+      "Accept",
+      "x-client-key",
+      "x-client-token",
+      "x-client-secret",
+      "Authorization",
+    ],
   };
 
   app.use(cors(corsOptions));
