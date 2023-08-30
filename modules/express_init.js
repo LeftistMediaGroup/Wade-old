@@ -49,7 +49,7 @@ export function Express_Init_Start() {
   var app = express();
 
   app.use(cors({
-    "origin": "https://leftistmediagroup.org/account",
+    "origin": "https://leftistmediagroup.org",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "preflightContinue": false,
     "optionsSuccessStatus": 204
