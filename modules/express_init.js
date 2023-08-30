@@ -48,13 +48,8 @@ export function Express_Init_Start() {
   var express = require("express");
   var app = express();
 
-  app.use(cors({
-    origin: 'https://leftistmediagroup.org',
-    methods: ['GET'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    maxAge: 600
-  }));
-
+  app.use(cors({origin: "https://leftistmediagroup.org/account"}));
+  
   var httpServer = https.createServer(credentials, app);
 
   app.use(cookieParser("This is a secret"));
