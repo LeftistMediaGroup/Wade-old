@@ -49,9 +49,10 @@ export function Express_Init_Start() {
   var app = express();
 
   app.use(cors({
-    "origin": "https://leftistmediagroup.org",
+    "origin": "https://wade.leftistmediagroup.org",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "allowedHeaders": "Access-Control-Allow-Origin"
+    "allowedHeaders": "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept",
+    "credentials": true
   }));
   
   app.use(cookieParser("This is a secret"));

@@ -23,7 +23,7 @@ router.post('/register_admin', (req, res) => {
   
     console.log(`Data: ${JSON.stringify(data, null, 2)}`)
       
-    var main_db = new PouchDB(`http://${process.env.host}:${process.env.port}/database/manifest`);
+    var main_db = new PouchDB(`https://${process.env.host}:${process.env.port}/database/data`);
     
     main_db.info().then(function (info) {
       console.log(`Info: ${JSON.stringify(info)}`);
@@ -55,7 +55,7 @@ router.post('/register_admin', (req, res) => {
           res.end();
         }
       }).catch(function (err) {
-        console.log(`Error: ${err}`);
+        console.log(`Error: ${JSON.stringify(err, null, 2)}`);
       });
     });
   } catch (err) {
