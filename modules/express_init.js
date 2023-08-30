@@ -48,11 +48,11 @@ export function Express_Init_Start() {
   var express = require("express");
   var app = express();
 
-  app.use(cors({
-    "origin": "https://leftistmediagroup.org",
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "allowedHeaders": "Access-Control-Allow-Origin"
-  }));
+  app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://leftistmediagroup.org");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
   
   app.use(cookieParser("This is a secret"));
 
