@@ -88,7 +88,7 @@ export function Express_Init_Start() {
     })
   );
 
-  app.use(cors({credentials: true, origin: "http://localhost:5000" }));
+  app.use(cors({credentials: true, origin: "*" }));
 
 
   // parse application/x-www-form-urlencoded
