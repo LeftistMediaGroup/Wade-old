@@ -48,10 +48,13 @@ export function Express_Init_Start() {
   var express = require("express");
   var app = express();
 
-  app.use(cors({origin: "https://leftistmediagroup.org/account"}));
+  app.use(cors({
+    "origin": "https://leftistmediagroup.org/account",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+  }));
   
-  var httpServer = https.createServer(credentials, app);
-
   app.use(cookieParser("This is a secret"));
 
   // set a cookie
@@ -158,6 +161,8 @@ export function Express_Init_Start() {
   });
 
   let port = 3001;
+
+  var httpServer = https.createServer(credentials, app);
 
   httpServer.listen(port, () => {
     console.log(`Express server listening on port ${port}\n`);
