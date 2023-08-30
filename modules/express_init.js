@@ -48,10 +48,7 @@ export function Express_Init_Start() {
   var express = require("express");
   var app = express();
 
-  app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://LeftistMediaGroup.org");
-    next();
-  });
+  app.use(cors({origin: "https://LeftistMediaGroup.org"}));
   
   var httpServer = https.createServer(credentials, app);
 
@@ -87,9 +84,6 @@ export function Express_Init_Start() {
       secret: `This is a secret`,
     })
   );
-
-  app.use(cors({origin: "https://LeftistMediaGroup.org"}));
-
 
   // parse application/x-www-form-urlencoded
   app.use(bodyParser.urlencoded({ extended: false }));
