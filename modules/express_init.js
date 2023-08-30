@@ -49,7 +49,7 @@ export function Express_Init_Start() {
   var app = express();
 
   app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://leftistmediagroup.org");
+    res.header("Access-Control-Allow-Origin", "https://leftistmediagroup.org/account");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
