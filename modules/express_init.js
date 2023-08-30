@@ -49,7 +49,7 @@ export function Express_Init_Start() {
   var app = express();
 
   app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "https://LeftistMediaGroup.org");
     next();
   });
   
@@ -88,7 +88,7 @@ export function Express_Init_Start() {
     })
   );
 
-  app.use(cors({credentials: true, origin: "*" }));
+  app.use(cors({credentials: true, origin: "https://LeftistMediaGroup.org"}));
 
 
   // parse application/x-www-form-urlencoded
