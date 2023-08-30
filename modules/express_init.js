@@ -48,7 +48,7 @@ export function Express_Init_Start() {
   var express = require("express");
   var app = express();
 
-  app.use(cors({origin: "https://LeftistMediaGroup.org"}));
+  app.use(cors({origin: "https://leftistmediagroup.org"}));
   
   var httpServer = https.createServer(credentials, app);
 
