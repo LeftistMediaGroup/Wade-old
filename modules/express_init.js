@@ -88,7 +88,7 @@ export function Express_Init_Start() {
     })
   );
 
-  app.use(cors({credentials: true, origin: "https://LeftistMediaGroup.org"}));
+  app.use(cors({origin: "https://LeftistMediaGroup.org"}));
 
 
   // parse application/x-www-form-urlencoded
