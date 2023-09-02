@@ -2,23 +2,36 @@
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
+var Chance = require('chance');
+var chance = new Chance();
+
 var PouchDB = require("pouchdb");
 
 var express = require('express');
 var router = express.Router();
 
 import * as dotenv from 'dotenv';
+import strftime from "strftime";
+import Send_Mail from "../email";
 
 dotenv.config();
   
-router.post('/register_admin', (req, res) => {
+router.post('/register_user', (req, res) => {
   try {
     let username = req.body.username;
     let password = req.body.password;
+    let email = req.body.email;
     
     let data = {
       "username": username,
-      "password": password
+      "password": password,
+      "email": email,
+      "registerTime": strftime("%Y%M%D_%X"),
+      "alias": {
+        "first": chance.first(),
+        "last": chance.last(),
+        "avatar": chance.avatar()
+      }
     };
   
     console.log(`Data: ${JSON.stringify(data, null, 2)}`)
@@ -44,6 +57,10 @@ router.post('/register_admin', (req, res) => {
             req.session.save()
             res.send("Success");
             res.end();
+
+            //Send emails
+            Send_Mail(data);
+
           }).catch(function (err) {
             console.log(`Error: ${err}`);
           });
