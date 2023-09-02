@@ -162,7 +162,7 @@ export function Express_Init_Start() {
 
   let port = 3001;
 
-  var httpServer = https.createServer(credentials, app);
+  var httpServer = http.createServer(app);
 
   httpServer.listen(port, () => {
     console.log(`Express server listening on port ${port}\n`);
