@@ -12,7 +12,7 @@ var router = express.Router();
 
 import * as dotenv from 'dotenv';
 import strftime from "strftime";
-import Send_Mail from "../email";
+import Send_Mail from "../email.js";
 
 dotenv.config();
   
