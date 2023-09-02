@@ -16,7 +16,7 @@ import Send_Mail from "../email.js";
 
 dotenv.config();
   
-router.post('/register_user', (req, res) => {
+router.put('/register_user', (req, res) => {
   try {
     let username = req.body.username;
     let password = req.body.password;
