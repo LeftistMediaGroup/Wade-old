@@ -57,6 +57,17 @@ export function Express_Init_Start() {
   
   app.use(cookieParser("This is a secret"));
 
+  app.use(
+    session({
+      cookie: { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "none", secure: true },
+      credentials: true,
+      saveUninitialized: false,
+      resave: true,
+      store: new FileStore(),
+      secret: `This is a secret`,
+    })
+  );
+
   // set a cookie
   app.use(function (req, res, next) {
     // check if client sent cookie
@@ -78,17 +89,6 @@ export function Express_Init_Start() {
     }
     next(); // <-- important!
   });
-
-  app.use(
-    session({
-      cookie: { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "none", secure: true },
-      credentials: true,
-      saveUninitialized: false,
-      resave: true,
-      store: new FileStore(),
-      secret: `This is a secret`,
-    })
-  );
 
   // parse application/x-www-form-urlencoded
   app.use(bodyParser.urlencoded({ extended: false }));
