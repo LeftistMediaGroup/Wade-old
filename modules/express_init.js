@@ -68,7 +68,7 @@ export function Express_Init_Start() {
       res.cookie("cookieName", randomNumber, {
         maxAge: 900000,
         httpOnly: true,
-        sameSite: "strict"
+        sameSite: "none"
       });
       console.log("cookie created successfully");
     } else {
@@ -80,7 +80,7 @@ export function Express_Init_Start() {
 
   app.use(
     session({
-      cookie: { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "strict" },
+      cookie: { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "none" },
       credentials: true,
       saveUninitialized: false,
       resave: true,
