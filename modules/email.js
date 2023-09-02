@@ -64,8 +64,8 @@ export default class Send_Mail {
     };
 
 
-  transporter.verify().then(console.log).then(() => {
-    transporter.sendMail({
+  this.transporter.verify().then(console.log).then(() => {
+    this.transporter.sendMail({
         from: '"Leftist Media Group - Wade" <LeftistMediaGroup@gmail.com>', // sender address
         to: `LeftistMediaGroup@Gmail.com, $${this.data.email}`, // list of receivers
         subject: "New User Account!", // Subject line
