@@ -51,7 +51,7 @@ export function Express_Init_Start() {
   app.use(cors({
     "origin": 'https://leftistmediagroup.org',
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "exposedHeaders": "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept",
+    "allowedHeaders": "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept",
     "credentials": true
   }));
   
