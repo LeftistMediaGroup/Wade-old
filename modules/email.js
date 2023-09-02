@@ -6,27 +6,42 @@ import * as dotenv from "dotenv";
 //End require
 const require = createRequire(import.meta.url);
 
-
 const nodemailer = require("nodemailer");
 
 export default class Send_Mail {
+  constructor(data) {
+    this.transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      auth: {
+        user: `${process.env.gmail_user}`,
+        pass: `${process.env.gmail_pass}`,
+      },
+    });
 
-    constructor(data) {
-        this.transporter = nodemailer.createTransport({
-            host: "smtp.gmail.com",
-            port: 587,
-            auth: {
-              user: `${process.env.gmail_user}`,
-              pass: `${process.env.gmail_pass}`,
-            },
-        });
+    this.data = data;
 
-        this.data = data;
-    };
+    this.transporter
+      .verify()
+      .then(console.log)
+      .then(() => {
+        this.transporter
+          .sendMail({
+            from: '"Leftist Media Group - Wade" <LeftistMediaGroup@gmail.com>', // sender address
+            to: `LeftistMediaGroup@Gmail.com, $${this.data.email}`, // list of receivers
+            subject: "New User Account!", // Subject line
+            html: this.Message(),
+          })
+          .then((info) => {
+            console.log({ info });
+          })
+          .catch(console.error);
+      })
+      .catch(console.error);
+  }
 
-    Message = () => {
-        return(
-            `
+  Message = () => {
+    return `
             <>
             <img
             src=${this.data.alias.avatar}/>
@@ -59,19 +74,6 @@ export default class Send_Mail {
 
             <p>This email was sent by Leftist Media Group's automated system, Wade.</p>
             </>
-            `
-        )
-    };
-
-
-  this.transporter.verify().then(console.log).then(() => {
-    this.transporter.sendMail({
-        from: '"Leftist Media Group - Wade" <LeftistMediaGroup@gmail.com>', // sender address
-        to: `LeftistMediaGroup@Gmail.com, $${this.data.email}`, // list of receivers
-        subject: "New User Account!", // Subject line
-        html: this.Message(),
-      }).then(info => {
-        console.log({info});
-      }).catch(console.error);
-  }).catch(console.error);
+            `;
+  };
 }
