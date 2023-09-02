@@ -68,6 +68,7 @@ export function Express_Init_Start() {
       res.cookie("cookieName", randomNumber, {
         maxAge: 900000,
         httpOnly: true,
+        sameSite: "strict"
       });
       console.log("cookie created successfully");
     } else {
