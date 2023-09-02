@@ -26,6 +26,7 @@ export default class Send_Mail {
 
     Message = () => {
         return(
+            <>
             <img
             src={this.data.alias.avatar}/>
             <p>
@@ -56,6 +57,7 @@ export default class Send_Mail {
             <b>https://discord.gg/SSZhgF5kWB</b>
 
             <p>This email was sent by Leftist Media Group's automated system, Wade.</p>
+            </>
         )
     };
 
