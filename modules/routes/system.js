@@ -41,7 +41,9 @@ router.put('/register_admin', (req, res) => {
 
             try {
               req.session.username = username;
-            
+          
+              res.setHeader('Content-Type', 'text/html')
+
               req.session.save()
 
               console.log(`Session saved: \nSession: ${JSON.stringify(req.session, null, 2)}\nSession Username: ${req.session.username}`);
