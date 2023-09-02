@@ -49,7 +49,7 @@ export function Express_Init_Start() {
   var app = express();
 
   app.use(cors({
-    "origin": "https://leftistmediagroup.org",
+    "origin": 'https://leftistmediagroup.org',
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "allowedHeaders": "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept",
     "credentials": true
@@ -97,7 +97,6 @@ export function Express_Init_Start() {
   app.use(express.json());
 
   app.use(logger("dev"));
-  app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 
   app.set("views", path.join(__dirname, "views"));
