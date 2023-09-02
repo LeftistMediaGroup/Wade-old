@@ -11,7 +11,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
   
-router.post('/register_admin', (req, res) => {
+router.put('/register_admin', (req, res) => {
   try {
     let username = req.body.username;
     let password = req.body.password;
