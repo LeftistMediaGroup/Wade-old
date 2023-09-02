@@ -39,9 +39,16 @@ router.put('/register_admin', (req, res) => {
           main_db.put(result).then(function (result2) {
             console.log(`Result2: ${JSON.stringify(result2, null, 2)}`);
 
-            req.session.username = username;
+            try {
+              req.session.username = username;
             
-            req.session.save()
+              req.session.save()
+
+              console.log(`Session saved: \nSession: ${JSON.stringify(req.session, null, 2)}\nSession Username: ${req.session.username}`);
+            } catch (err) {
+              console.log(`Session Add Error: ${err}`)
+            };
+
             res.send("Success");
             res.end();
           }).catch(function (err) {
