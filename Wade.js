@@ -2,7 +2,7 @@ import { Express_Init_Start } from "./modules/express_init.js";
 import { Database_init_start } from "./modules/database_init.js";
 import startRSS from "./modules/RSS/rss.js";
 import Replicator from "./modules/replicator.js";
-
+import Mail_init from "./modules/email.js";
 
 async function Start() {
   new Promise(() => {
@@ -16,6 +16,10 @@ async function Start() {
 
   new Promise(() => {
     new Replicator();
+  });
+
+  new Promise(() => {
+    Mail_init();
   });
 
   async function resolveDatabaseInit() {
