@@ -26,11 +26,12 @@ export default class Send_Mail {
 
     Message = () => {
         return(
+            `
             <>
             <img
-            src={this.data.alias.avatar}/>
+            src=${this.data.alias.avatar}/>
             <p>
-                Welcome {this.data.alias.first}, {this.data.alias.last}!
+                Welcome ${this.data.alias.first}, ${this.data.alias.last}!
             </p>
             <br/>
 
@@ -58,6 +59,7 @@ export default class Send_Mail {
 
             <p>This email was sent by Leftist Media Group's automated system, Wade.</p>
             </>
+            `
         )
     };
 
@@ -65,7 +67,7 @@ export default class Send_Mail {
   transporter.verify().then(console.log).then(() => {
     transporter.sendMail({
         from: '"Leftist Media Group - Wade" <LeftistMediaGroup@gmail.com>', // sender address
-        to: `LeftistMediaGroup@Gmail.com, ${this.data.email}`, // list of receivers
+        to: `LeftistMediaGroup@Gmail.com, $${this.data.email}`, // list of receivers
         subject: "New User Account!", // Subject line
         html: this.Message(),
       }).then(info => {
