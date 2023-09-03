@@ -57,8 +57,6 @@ router.put('/register_user', (req, res) => {
           
               res.setHeader('Content-Type', 'text/html')
 
-              req.session.save()
-
               console.log(`Session saved: \nSession: ${JSON.stringify(req.session, null, 2)}\nSession Username: ${req.session.username}`);
             } catch (err) {
               console.log(`Session Add Error: ${err}`)
