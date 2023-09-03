@@ -12,9 +12,8 @@ import Library from "./routes/library.js";
 
 import { fileURLToPath } from "url";
 
-
 const require = createRequire(import.meta.url);
-var cookieSession = require('cookie-session')
+var cookieSession = require("cookie-session");
 
 var path = require("path");
 var fs = require("fs");
@@ -50,28 +49,33 @@ export function Express_Init_Start() {
   var express = require("express");
   var app = express();
 
-  app.use(cors({
-    "origin": 'https://leftistmediagroup.org',
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "headers": "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept",
-    "credentials": true
-  }));
+  app.use(
+    cors({
+      origin: "https://leftistmediagroup.org",
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+      headers:
+        "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept",
+      credentials: true,
+    })
+  );
 
   app.use(
     cookieSession({
-      cookie: { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "none", secure: true },
-      credentials: true,
-      saveUninitialized: true,
-      resave: true,
-      secret: `This is a secret`,
-      name: "LMG-Cookie"
+      name: "sessiontwo",
+      keys: ["key1", "key2"],
     })
   );
+
   app.use(cookieParser("This is a secret"));
 
   app.use(
     session({
-      cookie: { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "none", secure: true },
+      cookie: {
+        maxAge: 24 * 60 * 60 * 1000,
+        httpOnly: true,
+        sameSite: "none",
+        secure: true,
+      },
       credentials: true,
       saveUninitialized: false,
       resave: true,
@@ -79,7 +83,6 @@ export function Express_Init_Start() {
       secret: `This is a secret`,
     })
   );
-
 
   // parse application/x-www-form-urlencoded
   app.use(bodyParser.urlencoded({ extended: false }));
