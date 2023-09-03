@@ -16,8 +16,7 @@ import { fileURLToPath } from "url";
 const require = createRequire(import.meta.url);
 var cookieSession = require('cookie-session')
 
-var path = require("pavar cookieSession = require('cookie-session')
-th");
+var path = require("path");
 var fs = require("fs");
 
 const __filename = fileURLToPath(import.meta.url);
@@ -57,7 +56,7 @@ export function Express_Init_Start() {
     "headers": "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept",
     "credentials": true
   }));
-  
+
   app.use(
     cookieSession({
       cookie: { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "none", secure: true },
