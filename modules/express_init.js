@@ -12,9 +12,9 @@ import Library from "./routes/library.js";
 
 import { fileURLToPath } from "url";
 
-var cookieSession = require('cookie-session')
 
 const require = createRequire(import.meta.url);
+var cookieSession = require('cookie-session')
 
 var path = require("path");
 var fs = require("fs");
