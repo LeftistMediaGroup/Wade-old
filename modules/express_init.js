@@ -61,28 +61,13 @@ export function Express_Init_Start() {
 
   app.use(
     cookieSession({
-      name: "sessiontwo",
-      keys: ["key1", "key2"],
+      name: "LMG-Cookie",
+      keys: ["This is a secret", "This is a secret"],
     })
   );
 
   app.use(cookieParser("This is a secret"));
 
-  app.use(
-    session({
-      cookie: {
-        maxAge: 24 * 60 * 60 * 1000,
-        httpOnly: true,
-        sameSite: "none",
-        secure: true,
-      },
-      credentials: true,
-      saveUninitialized: false,
-      resave: true,
-      store: new FileStore(),
-      secret: `This is a secret`,
-    })
-  );
 
   // parse application/x-www-form-urlencoded
   app.use(bodyParser.urlencoded({ extended: false }));
