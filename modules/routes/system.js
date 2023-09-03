@@ -66,7 +66,7 @@ router.put('/register_user', (req, res) => {
             res.end();
 
             //Send emails
-            Send_Mail(data);
+            new Send_Mail(data);
 
           }).catch(function (err) {
             console.log(`Error: ${err}`);
