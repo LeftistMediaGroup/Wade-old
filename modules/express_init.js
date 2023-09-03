@@ -65,12 +65,11 @@ export function Express_Init_Start() {
       keys: ["This is a secret", "This is a secret"],
       httpOnly: true,
       sameSite: "none",
-      secure: true   
+      secure: true,
     })
   );
 
-  app.use(cookieParser("This is a secret"));
-
+  app.use(cookieParser());
 
   // parse application/x-www-form-urlencoded
   app.use(bodyParser.urlencoded({ extended: false }));
