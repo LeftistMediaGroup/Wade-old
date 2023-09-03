@@ -61,9 +61,8 @@ export function Express_Init_Start() {
     cookieSession({
       cookie: { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "none", secure: true },
       credentials: true,
-      saveUninitialized: false,
+      saveUninitialized: true,
       resave: true,
-      store: new FileStore(),
       secret: `This is a secret`,
       name: "LMG-Cookie"
     })
