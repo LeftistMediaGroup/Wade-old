@@ -12,6 +12,8 @@ import Library from "./routes/library.js";
 
 import { fileURLToPath } from "url";
 
+var cookieSession = require('cookie-session')
+
 const require = createRequire(import.meta.url);
 
 var path = require("path");
@@ -65,7 +67,17 @@ export function Express_Init_Start() {
       resave: true,
       store: new FileStore(),
       secret: `This is a secret`,
-      name: "LMG-Cookie"
+    })
+  );
+
+  app.use(
+    cookieSession({
+      cookie: { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "none", secure: true },
+      credentials: true,
+      saveUninitialized: false,
+      resave: true,
+      store: new FileStore(),
+      secret: `This is a secret`,
     })
   );
 
