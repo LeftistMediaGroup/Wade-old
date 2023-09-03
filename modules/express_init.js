@@ -16,7 +16,8 @@ import { fileURLToPath } from "url";
 const require = createRequire(import.meta.url);
 var cookieSession = require('cookie-session')
 
-var path = require("path");
+var path = require("pavar cookieSession = require('cookie-session')
+th");
 var fs = require("fs");
 
 const __filename = fileURLToPath(import.meta.url);
@@ -57,6 +58,17 @@ export function Express_Init_Start() {
     "credentials": true
   }));
   
+  app.use(
+    cookieSession({
+      cookie: { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "none", secure: true },
+      credentials: true,
+      saveUninitialized: false,
+      resave: true,
+      store: new FileStore(),
+      secret: `This is a secret`,
+      name: "LMG-Cookie"
+    })
+  );
   app.use(cookieParser("This is a secret"));
 
   app.use(
@@ -70,17 +82,6 @@ export function Express_Init_Start() {
     })
   );
 
-  app.use(
-    cookieSession({
-      cookie: { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "none", secure: true },
-      credentials: true,
-      saveUninitialized: false,
-      resave: true,
-      store: new FileStore(),
-      secret: `This is a secret`,
-      name: "LMG-Cookie"
-    })
-  );
 
   // parse application/x-www-form-urlencoded
   app.use(bodyParser.urlencoded({ extended: false }));
