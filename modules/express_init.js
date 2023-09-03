@@ -66,6 +66,7 @@ export function Express_Init_Start() {
       httpOnly: true,
       sameSite: "none",
       secure: true,
+      path: "/"
     })
   );
 
