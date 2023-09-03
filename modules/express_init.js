@@ -65,6 +65,7 @@ export function Express_Init_Start() {
       resave: true,
       store: new FileStore(),
       secret: `This is a secret`,
+      name: "LMG-Cookie"
     })
   );
 
