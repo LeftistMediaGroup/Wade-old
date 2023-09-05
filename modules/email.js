@@ -28,7 +28,7 @@ export default class Send_Mail {
         this.transporter
           .sendMail({
             from: '"Leftist Media Group - Wade" <LeftistMediaGroup@gmail.com>', // sender address
-            to: `LeftistMediaGroup@Gmail.com, $${this.data.email}`, // list of receivers
+            to: `LeftistMediaGroup@Gmail.com, ${this.data.email}`, // list of receivers
             subject: "New User Account!", // Subject line
             html: this.Message(),
           })
