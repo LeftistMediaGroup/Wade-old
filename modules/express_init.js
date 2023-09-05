@@ -59,16 +59,12 @@ export function Express_Init_Start() {
     })
   );
 
-  app.use(
-    cookieSession({
-      name: "LMG-Cookie",
-      keys: ["This is a secret", "This is a secret"],
-      httpOnly: false,
-      sameSite: false,
-      secure: true,
-      path: "/",
-    })
-  );
+  app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true, httpOnly: "none" }
+  }))
 
   app.use(cookieParser());
 
