@@ -63,7 +63,7 @@ export function Express_Init_Start() {
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true, sameSite: "none", maxAge: 86400000, httpOnly: false }
+    cookie: { secure: false, sameSite: "none", maxAge: 86400000, httpOnly: false }
   }))
 
   app.use(cookieParser());
