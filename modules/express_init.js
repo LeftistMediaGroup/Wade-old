@@ -63,11 +63,10 @@ export function Express_Init_Start() {
     cookieSession({
       name: "LMG-Cookie",
       keys: ["This is a secret", "This is a secret"],
-      httpOnly: true,
-      sameSite: "none",
+      httpOnly: false,
+      sameSite: false,
       secure: true,
       path: "/",
-      credentials: true
     })
   );
 
