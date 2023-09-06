@@ -190,10 +190,10 @@ router.post("/register_admin", (req, res) => {
               res.json("Username Taken");
               res.end();
             }
-          } else (
+          } else {
             res.json("Root User Already Created!");
             res.end();
-          )
+          }
         })
         .catch(function (err) {
           console.log(`Error: ${JSON.stringify(err, null, 2)}`);
