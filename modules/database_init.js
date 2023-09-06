@@ -48,6 +48,7 @@ export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
                     back1_password: process.env.back1_password,
                   },
                 ],
+                root_created: false;
               })
               .then(function (main) {
                 console.log(`Main returned: ${JSON.stringify(main, null, 2)}`);
