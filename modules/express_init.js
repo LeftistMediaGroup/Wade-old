@@ -56,12 +56,17 @@ export function Express_Init_Start() {
       origin: "https://leftistmediagroup.org",
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       headers:
-        "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept",
+        "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept, Origin",
       credentials: true,
     })
   );
 
-
+  app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true, sameSite: "none", maxAge: 86400000, httpOnly: false }
+  }))
 
   app.use(cookieParser());
 
