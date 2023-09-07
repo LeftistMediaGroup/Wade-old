@@ -128,7 +128,7 @@ router.post("/register_admin", (req, res) => {
     let username = `${first}-${last}-${chance.integer({ min: 2, max: 2 })}`;
 
     let data = {
-      username: username
+      username: username,
       password: password,
       email: email,
       registerTime: strftime("%Y%M%D_%X"),
