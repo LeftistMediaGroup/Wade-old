@@ -50,10 +50,10 @@ export function Express_Init_Start() {
   var app = express();
 
   app.set("trust proxy", 1);
-
+  
   app.use(
     cors({
-      origin: 'https://leftistmediagroup.org',
+      origin: "https://leftistmediagroup.org",
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       headers:
         "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept",
