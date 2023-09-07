@@ -21,18 +21,21 @@ router.put("/register_user", (req, res) => {
     let password = req.body.password;
     let email = req.body.email;
 
+    let first = chance.first();
+    let last =  chance.last();
+
+    let username = `${first}-${last}-${chance.integer({ min: 2, max: 2 })}`;
+    
     let data = {
+      username: username,
       password: password,
       email: email,
       registerTime: strftime("%Y%M%D_%X"),
-      alias: {
-        first: chance.first(),
-        last: chance.last(),
-        avatar: chance.avatar(),
-      },
+      avatar: chance.avatar(),
       messages: {},
       taks: {},
-      files: {}
+      files: {},
+      is_admin: false
     };
 
     console.log(`Data: ${JSON.stringify(data, null, 2)}`);
@@ -46,7 +49,7 @@ router.put("/register_user", (req, res) => {
         .get("Main")
         .then(function (result) {
           if (!JSON.stringify(result).includes(email)) {
-            result.users[email] = data;
+            result.users[username] = data;
 
             main_db
               .put(result)
@@ -73,7 +76,7 @@ router.put("/register_user", (req, res) => {
                 res.end();
 
                 //Send emails
-                new Send_Mail(data);
+                //new Send_Mail(data);
               })
               .catch(function (err) {
                 console.log(`Error: ${err}`);
@@ -119,18 +122,21 @@ router.post("/register_admin", (req, res) => {
     let password = req.body.password;
     let email = req.body.email;
 
+    let first = chance.first();
+    let last =  chance.last();
+
+    let username = `${first}-${last}-${chance.integer({ min: 2, max: 2 })}`;
+
     let data = {
+      username: username
       password: password,
       email: email,
       registerTime: strftime("%Y%M%D_%X"),
-      alias: {
-        first: chance.first(),
-        last: chance.last(),
-        avatar: chance.avatar(),
-      },
+      avatar: chance.avatar(),
       messages: {},
       tasks: {},
-      files: {}
+      files: {},
+      is_admin: true
     };
 
     console.log(`Data: ${JSON.stringify(data, null, 2)}`);
@@ -150,7 +156,8 @@ router.post("/register_admin", (req, res) => {
             if (!JSON.stringify(result).includes(email)) {
               console.log(`Adding data: ${JSON.stringify(data, null, 2)}`);
 
-              result.adminUsers[email] = data;
+              result.users[username] = data;
+              result.root_created = true;
 
               main_db
                 .put(result)
@@ -179,7 +186,7 @@ router.post("/register_admin", (req, res) => {
                   res.end();
 
                   //Send emails
-                  new Send_Mail(data);
+                  //new Send_Mail(data);
                 })
                 .catch(function (err) {
                   console.log(`Error: ${err}`);
@@ -193,6 +200,44 @@ router.post("/register_admin", (req, res) => {
           } else {
             res.json("Root User Already Created!");
             res.end();
+          }
+        })
+        .catch(function (err) {
+          console.log(`Error: ${JSON.stringify(err, null, 2)}`);
+        });
+    });
+  } catch (err) {
+    console.log(`Error: ${err}`);
+  }
+});
+
+router.post("/login", (req, res) => {
+  try {
+    let password = req.body.password;
+    let username = req.body.username;
+
+    var main_db = new PouchDB(
+      `http://${process.env.host}:${process.env.port}/database/data`
+    );
+
+    main_db.info().then(function (info) {
+      console.log(`Info: ${JSON.stringify(info)}`);
+
+      main_db
+        .get("Main")
+        .then(function (result) {
+          console.log(`Main: ${JSON.stringify(result, null, 2)}`);
+
+          for (user of result.users) {
+            if (user.username === username) {
+              if (user.is_admin === true) {
+                res.json({username: username, is_admin: true});
+                res.end();
+              } else {
+                res.json({username: username, is_admin: false});
+                res.end();
+              }
+            };
           }
         })
         .catch(function (err) {
