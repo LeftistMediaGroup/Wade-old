@@ -49,7 +49,6 @@ export function Express_Init_Start() {
   var express = require("express");
   var app = express();
 
-  app.set("trust proxy", 1);
   
   app.use(
     cors({
