@@ -49,6 +49,8 @@ export default class Send_Mail {
             </p>
             <br/>
 
+            <p> Make sure to use this username when logging in: ${this.data.username}</p>
+
             <p>Wait, that's not your name! It's your Alias!</p>
             <br/>
 
