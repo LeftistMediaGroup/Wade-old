@@ -117,7 +117,7 @@ router.get("/is_loggedin", (req, res) => {
   res.end();
 });
 
-router.post("/register_admin", (req, res) => {
+router.put("/register_admin", (req, res) => {
   try {
     let password = req.body.password;
     let email = req.body.email;
@@ -211,7 +211,7 @@ router.post("/register_admin", (req, res) => {
   }
 });
 
-router.post("/login", (req, res) => {
+router.put("/login", (req, res) => {
   try {
     let password = req.body.password;
     let username = req.body.username;
