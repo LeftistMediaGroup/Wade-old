@@ -76,7 +76,7 @@ router.put("/register_user", (req, res) => {
                 res.end();
 
                 //Send emails
-                new Send_Mail(data);
+                //new Send_Mail(data);
               })
               .catch(function (err) {
                 console.log(`Error: ${err}`);
@@ -117,7 +117,7 @@ router.get("/is_loggedin", (req, res) => {
   res.end();
 });
 
-router.put("/register_admin", (req, res) => {
+router.post("/register_admin", (req, res) => {
   try {
     let password = req.body.password;
     let email = req.body.email;
@@ -128,7 +128,7 @@ router.put("/register_admin", (req, res) => {
     let username = `${first}-${last}-${chance.integer({ min: 2, max: 2 })}`;
 
     let data = {
-      username: username,
+      username: username
       password: password,
       email: email,
       registerTime: strftime("%Y%M%D_%X"),
@@ -186,7 +186,7 @@ router.put("/register_admin", (req, res) => {
                   res.end();
 
                   //Send emails
-                  new Send_Mail(data);
+                  //new Send_Mail(data);
                 })
                 .catch(function (err) {
                   console.log(`Error: ${err}`);
@@ -211,7 +211,7 @@ router.put("/register_admin", (req, res) => {
   }
 });
 
-router.put("/login", (req, res) => {
+router.post("/login", (req, res) => {
   try {
     let password = req.body.password;
     let username = req.body.username;
