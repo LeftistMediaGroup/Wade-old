@@ -72,7 +72,7 @@ router.put("/register_user", (req, res) => {
                   console.log(`Session Add Error: ${err}`);
                 }
 
-                res.send("Success");
+                res.json({username: username, is_loggedin: true});
                 res.end();
 
                 //Send emails
