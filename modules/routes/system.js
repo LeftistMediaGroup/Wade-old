@@ -24,7 +24,7 @@ router.put("/register_user", (req, res) => {
     let first = chance.first();
     let last =  chance.last();
 
-    let username = `${first}-${last}-${chance.integer({ min: 2, max: 2 })}`;
+    let username = `${first}-${last}-${chance.integer({ min: 1, max: 99 })}`;
     
     let data = {
       username: username,
@@ -125,7 +125,7 @@ router.put("/register_admin", (req, res) => {
     let first = chance.first();
     let last =  chance.last();
 
-    let username = `${first}-${last}-${chance.integer({ min: 2, max: 2 })}`;
+    let username = `${first}-${last}-${chance.integer({ min: 1, max: 99 })}`;
 
     let data = {
       username: username,
