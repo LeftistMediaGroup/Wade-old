@@ -54,7 +54,7 @@ export function Express_Init_Start() {
     cors({
       origin: "https://localhost:3000",
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-      headers:
+      allowedHeaders:
         "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept, Origin, Access-Control-Allow-Credentials",
       credentials: true,
     })
