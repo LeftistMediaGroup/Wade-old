@@ -52,7 +52,7 @@ export function Express_Init_Start() {
   
   app.use(
     cors({
-      origin: "https://localhost:3000",
+      origin: "https:leftistmediagroup.org",
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       allowedHeaders:
         "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept, Origin, Access-Control-Allow-Credentials",
