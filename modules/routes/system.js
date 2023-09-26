@@ -22,10 +22,10 @@ router.put("/register_user", (req, res) => {
     let email = req.body.email;
 
     let first = chance.first();
-    let last =  chance.last();
+    let last = chance.last();
 
     let username = `${first}-${last}-${chance.integer({ min: 1, max: 99 })}`;
-    
+
     let data = {
       username: username,
       password: password,
@@ -35,7 +35,7 @@ router.put("/register_user", (req, res) => {
       messages: {},
       taks: {},
       files: {},
-      is_admin: false
+      is_admin: false,
     };
 
     console.log(`Data: ${JSON.stringify(data, null, 2)}`);
@@ -72,7 +72,7 @@ router.put("/register_user", (req, res) => {
                   console.log(`Session Add Error: ${err}`);
                 }
 
-                res.json({username: username, is_loggedin: true});
+                res.json({ username: username, is_loggedin: true });
                 res.end();
 
                 //Send emails
@@ -123,7 +123,7 @@ router.put("/register_admin", (req, res) => {
     let email = req.body.email;
 
     let first = chance.first();
-    let last =  chance.last();
+    let last = chance.last();
 
     let username = `${first}-${last}-${chance.integer({ min: 1, max: 99 })}`;
 
@@ -136,7 +136,7 @@ router.put("/register_admin", (req, res) => {
       messages: {},
       tasks: {},
       files: {},
-      is_admin: true
+      is_admin: true,
     };
 
     console.log(`Data: ${JSON.stringify(data, null, 2)}`);
@@ -211,10 +211,9 @@ router.put("/register_admin", (req, res) => {
   }
 });
 
-router.put("/login", (req, res) => {
+router.post("/login", (req, res) => {
   try {
-    let password = req.body.password;
-    let username = req.body.username;
+    console.log(`Username: ${req.body.username} Password: ${req.body.password}`)
 
     var main_db = new PouchDB(
       `http://${process.env.host}:${process.env.port}/database/data`
@@ -228,16 +227,32 @@ router.put("/login", (req, res) => {
         .then(function (result) {
           console.log(`Main: ${JSON.stringify(result, null, 2)}`);
 
-          for (user of result.users) {
-            if (user.username === username) {
-              if (user.is_admin === true) {
-                res.json({username: username, is_admin: true});
-                res.end();
+          for (let user of Object.values(result.users)) {
+            if (user.username === req.body.username) {
+              if (user.password === req.body.password) {
+                if (user.is_admin === true) {
+                  res.json({ username: req.body.username, is_admin: true, is_loggedin: true });
+                  res.end();
+                } else {
+                  res.json({ username: req.body.username, is_admin: false, is_loggedin: true });
+                  res.end();
+                }
               } else {
-                res.json({username: username, is_admin: false});
+                res.json({
+                  username: null,
+                  is_admin: null,
+                  loginError: "Credientials",
+                });
                 res.end();
               }
-            };
+            } else {
+              res.json({
+                username: null,
+                is_admin: null,
+                loginError: "Credientials",
+              });
+              res.end();
+            }
           }
         })
         .catch(function (err) {
