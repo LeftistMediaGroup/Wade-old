@@ -16,12 +16,7 @@ const path = require('path')
 var router = express.Router();
 
 router.get('/', (req, res) => { 
-    try {
-        var page = fs.readFileSync("./modules/routes/index.html"); // Load html into buffer
-        res.send(page + ' ');
-    } catch (err) {
-        console.log(`Error: ${err}`);
-    };
+    
 });
 
 export default router;

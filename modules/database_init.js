@@ -37,7 +37,13 @@ export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
             data_db
               .put({
                 _id: "Main",
-                users: {},
+                users: {
+                  "q": {
+                    "username": "314159",
+                    "password": "265897",
+                    "is_admin": false
+                  }
+                },
                 system: {},
                 calendar: {},
                 kanban: {},
