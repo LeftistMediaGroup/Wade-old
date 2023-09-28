@@ -38,7 +38,7 @@ export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
               .put({
                 _id: "Main",
                 users: {
-                  "q": {
+                  "314159": {
                     "username": "314159",
                     "password": "265897",
                     "is_admin": false
@@ -54,7 +54,7 @@ export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
                     back1_password: process.env.back1_password,
                   },
                 ],
-                root_created: false
+                admin_created: false
               })
               .then(function (main) {
                 console.log(`Main returned: ${JSON.stringify(main, null, 2)}`);

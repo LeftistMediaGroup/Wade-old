@@ -9,6 +9,7 @@ import Music from "./routes/music.js";
 import Sync from "./routes/sync.js";
 import RSS from "./routes/rss.js";
 import Library from "./routes/library.js";
+import Admin from "./routes/admin.js";
 
 import { fileURLToPath } from "url";
 
@@ -123,6 +124,8 @@ export function Express_Init_Start() {
   app.use("/syncIn", Sync);
   app.use("/rss_out", RSS);
   app.use("/library", Library);
+  app.use("/admin", Admin);
+
 
   app.use(express.static("public"));
 
