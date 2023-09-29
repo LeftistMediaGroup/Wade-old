@@ -50,10 +50,9 @@ export function Express_Init_Start() {
   var express = require("express");
   var app = express();
 
-  
   app.use(
     cors({
-      origin: "https:leftistmediagroup.org",
+      origin: "https://leftistmediagroup.org",
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       allowedHeaders:
         "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept, Origin, Access-Control-Allow-Credentials",
@@ -61,12 +60,19 @@ export function Express_Init_Start() {
     })
   );
 
-  app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false, sameSite: "none", maxAge: 86400000, httpOnly: false }
-  }))
+  app.use(
+    session({
+      secret: "keyboard cat",
+      resave: false,
+      saveUninitialized: true,
+      cookie: {
+        secure: false,
+        sameSite: "none",
+        maxAge: 86400000,
+        httpOnly: false,
+      },
+    })
+  );
 
   app.use(cookieParser());
 
@@ -125,7 +131,6 @@ export function Express_Init_Start() {
   app.use("/rss_out", RSS);
   app.use("/library", Library);
   app.use("/admin", Admin);
-
 
   app.use(express.static("public"));
 
