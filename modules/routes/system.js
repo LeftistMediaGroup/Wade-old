@@ -76,7 +76,7 @@ router.put("/register_user", (req, res) => {
                 res.end();
 
                 //Send emails
-                //new Send_Mail(data);
+                new Send_Mail(data);
               })
               .catch(function (err) {
                 console.log(`Error: ${err}`);
@@ -161,7 +161,7 @@ router.put("/register_admin", (req, res) => {
                   res.end();
 
                   //Send emails
-                  //new Send_Mail(data);
+                  new Send_Mail(data);
                 })
                 .catch(function (err) {
                   console.log(`Error: ${err}`);
