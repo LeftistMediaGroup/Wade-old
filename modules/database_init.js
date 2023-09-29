@@ -38,11 +38,11 @@ export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
               .put({
                 _id: "Main",
                 users: {
-                  "314159": {
-                    "username": "314159",
-                    "password": "265897",
-                    "is_admin": false
-                  }
+                  314159: {
+                    username: "314159",
+                    password: "265897",
+                    is_admin: false,
+                  },
                 },
                 system: {},
                 calendar: {},
@@ -54,7 +54,7 @@ export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
                     back1_password: process.env.back1_password,
                   },
                 ],
-                admin_created: false
+                admin_created: false,
               })
               .then(function (main) {
                 console.log(`Main returned: ${JSON.stringify(main, null, 2)}`);
@@ -120,4 +120,5 @@ export function Database_init_start(resolveDatabaseInit, rejectDatabaseInit) {
         }
       }
     });
+  resolveDatabaseInit();
 }

@@ -21,13 +21,13 @@ class feedStore {
 
   getFeed() {
     var RSS_db = new PouchDB(
-      `https://${process.env.host}:${process.env.port}/database/rss`
+      `http://${process.env.host}:${process.env.port}/database/rss`
     );
     RSS_db.allDocs({
       include_docs: true,
       attachments: true,
     }).then(function (info) {
-      console.log(`RSS From Database: ${JSON.stringify(info)}`);
+      console.log(`RSS From Database: ${JSON.stringify(info, null, 2)}`);
 
       console.log(`Refreshing RSS feed \n`);
 
