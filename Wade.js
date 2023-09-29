@@ -14,7 +14,7 @@ async function Start() {
   });
 
   new Promise(() => {
-    new Replicator();
+    //new Replicator();
   });
 
   async function resolveDatabaseInit() {
