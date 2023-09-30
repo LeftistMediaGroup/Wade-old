@@ -45,7 +45,7 @@ export default class Send_Mail {
             <img
             src=${this.data.avatar}/>
             <p>
-                Welcome ${this.data.first}, ${this.data.alias.last}!
+                Welcome ${this.data.username}!
             </p>
             <br/>
 
