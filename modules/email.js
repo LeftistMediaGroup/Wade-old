@@ -43,9 +43,9 @@ export default class Send_Mail {
   Message = () => {
     return `
             <img
-            src=${this.data.alias.avatar}/>
+            src=${this.data.avatar}/>
             <p>
-                Welcome ${this.data.alias.first}, ${this.data.alias.last}!
+                Welcome ${this.data.first}, ${this.data.alias.last}!
             </p>
             <br/>
 
