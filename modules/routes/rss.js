@@ -15,17 +15,16 @@ var strftime = require("strftime");
 dotenv.config();
 
 router.get("/get_rss", (req, res) => {
-  var RSS_db = new PouchDB(
-    `http://localhost:3001/database/rss`
-  );
+  var RSS_db = new PouchDB(`http://localhost:3001/database/rss`);
 
-  RSS_db.info().then(function () {
+  RSS_db.info().then(() => {
     RSS_db.allDocs({
       include_docs: true,
-      attachments: true,
     })
-      .then(function (result) {
-        res.send(`Result: ${JSON.stringify(result, null, 2)}`);
+      .then((result) => {
+        console.log(`RESULT: ${JSON.stringify(result.rows, null, 2)}`);
+
+        res.json(result.rows);
         res.end();
       })
       .catch(function (err) {
@@ -39,7 +38,7 @@ router.get("/get_rss", (req, res) => {
 });
 
 router.get("/test", (req, res) => {
-  res.json({"Response:": "Test"});
+  res.json({ "Response:": "Test" });
   res.end();
 });
 

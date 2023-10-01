@@ -10,6 +10,7 @@ import Sync from "./routes/sync.js";
 import RSS from "./routes/rss.js";
 import Library from "./routes/library.js";
 import Admin from "./routes/admin.js";
+import Messages from "./routes/messages.js";
 
 import { fileURLToPath } from "url";
 
@@ -52,7 +53,7 @@ export function Express_Init_Start() {
 
   app.use(
     cors({
-      origin: "https://leftistmediagroup.org",
+      origin: "https://localhost:3000",
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       allowedHeaders:
         "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept, Origin, Access-Control-Allow-Credentials",
@@ -122,6 +123,10 @@ export function Express_Init_Start() {
     )
   );
 
+  var users = new PouchDB("users", {
+    prefix: "./database/users",
+  });
+
   app.disable("etag");
 
   app.use("/system", System);
@@ -131,6 +136,7 @@ export function Express_Init_Start() {
   app.use("/rss_out", RSS);
   app.use("/library", Library);
   app.use("/admin", Admin);
+  app.use("/messages", Messages);
 
   app.use(express.static("public"));
 

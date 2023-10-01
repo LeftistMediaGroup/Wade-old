@@ -6,6 +6,14 @@ const require = createRequire(import.meta.url);
 
 var PouchDB = require("pouchdb");
 
+const jsonFix = require("json-fixer");
+import { jsonrepair } from "jsonrepair";
+
+import strftime from "strftime";
+var Chance = require("chance");
+
+var chance = new Chance();
+
 const RssFeedEmitter = require("rss-feed-emitter");
 const feeder = new RssFeedEmitter();
 
@@ -23,52 +31,54 @@ class feedStore {
     var RSS_db = new PouchDB(
       `http://${process.env.host}:${process.env.port}/database/rss`
     );
-    RSS_db.allDocs({
-      include_docs: true,
-      attachments: true,
-    }).then(function (info) {
-      console.log(`RSS From Database: ${JSON.stringify(info, null, 2)}`);
 
-      console.log(`Refreshing RSS feed \n`);
+    RSS_db.info().then(() => {
+      RSS_db.allDocs({
+        include_docs: true,
+      }).then(function (info) {
+        //console.log(`RSS From Database: ${JSON.stringify(info, null, 2)}`);
 
-      feeder.add({
-        url: [
-          "http://theanarchistlibrary.org/feed",
-          "http://itsgoingdown.org/feed",
-          "http://freedomnews.org.uk/feed",
-          "http://anarchistnews.org/rss.xml",
-        ],
-        refresh: 2000,
-      });
+        console.log(`Refreshing RSS feed \n`);
 
-      function newItem(feeder, info) {
-        feeder.on("new-item", function (item) {
-          let exists = Object.values(info).includes(item.title);
-
-          if (exists === false) {
-            try {
-              RSS_db.put({
-                _id: item.title,
-                body: { item },
-              }).catch((err) => {
-                console.log(`Error: ${err}`);
-              });
-            } catch (err) {
-              console.log(`Error: ${err}`);
-            }
-
-            console.log(`Item Inserted: ${item.title}\n`);
-          } else {
-            console.log(`Item Found: ${item.title}\n`);
-          }
+        feeder.add({
+          url: [
+            "http://theanarchistlibrary.org/feed",
+            "http://itsgoingdown.org/feed",
+            "http://freedomnews.org.uk/feed",
+            "http://anarchistnews.org/rss.xml",
+          ],
+          refresh: 2000,
         });
-      }
 
-      newItem(feeder, info);
+        function newItem(feeder, info) {
+          feeder.on("new-item", function (item) {
+            if (JSON.stringify(info).includes(item.title)) {
+              let exists = true;
+            } else {
+              try {
+                RSS_db.put({
+                  _id: `${strftime("%Y%M%D_%X_%L")}_${chance.string({
+                    length: 5,
+                  })}`,
+                  title: item.title,
+                  body: item.description,
+                  all: item,
+                }).catch((err) => {
+                  console.log(`Error: ${JSON.stringify(err, null, 2)}`);
+                });
+              } catch (err) {
+                console.log(`Error: ${JSON.stringify(err, null, 2)}`);
+              }
+            }
+          });
+        }
 
-      feeder.on("error", console.error);
+        newItem(feeder, info);
 
-      //feeder.list;
+        feeder.on("error", console.error);
+
+        //feeder.list;
+      });
     });
   }
 }

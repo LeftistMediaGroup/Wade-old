@@ -27,13 +27,25 @@ router.put("/register_user", (req, res) => {
     let username = `${first}-${last}-${chance.integer({ min: 1, max: 99 })}`;
 
     let data = {
+      _id: username,
+      first: first,
+      last: last,
       username: username,
       password: password,
       email: email,
       registerTime: strftime("%Y%M%D_%X"),
       avatar: chance.avatar(),
-      messages: {},
-      taks: {},
+      messages: {
+        threads: {}
+        all: {},
+        inbox: {},
+        sent: {},
+        unread: {},
+        read: {},
+      },
+      contacts: {},
+      discussions: {},
+      tasks: {},
       files: {},
       is_admin: false,
     };
@@ -53,11 +65,16 @@ router.put("/register_user", (req, res) => {
 
             main_db
               .put(result)
-              .then(function (result2) {
+              .then(() => {
+                var user_db = new PouchDB(`database/users`);
+
+                user_db.info().then(() => {
+                  user_db.put(data);
+                });
+              })
+              .then(function () {
                 try {
-                  req.session.username = JSON.stringify(
-                    `${data.alias.first}-${data.alias.last}`
-                  );
+                  req.session.username = username;
 
                   res.setHeader("Content-Type", "text/html");
 
@@ -76,7 +93,7 @@ router.put("/register_user", (req, res) => {
                 res.end();
 
                 //Send emails
-                new Send_Mail(data);
+                //new Send_Mail(data);
               })
               .catch(function (err) {
                 console.log(`Error: ${err}`);
@@ -120,12 +137,24 @@ router.put("/register_admin", (req, res) => {
     let username = `${first}-${last}-${chance.integer({ min: 1, max: 99 })}`;
 
     let data = {
+      _id: username,
+      first: first,
+      last: last,
       username: username,
       password: password,
       email: email,
       registerTime: strftime("%Y%M%D_%X"),
       avatar: chance.avatar(),
-      messages: {},
+      messages: {
+        threads: {}
+        all: {},
+        inbox: {},
+        sent: {},
+        unread: {},
+        read: {},
+      },
+      contacts: {},
+      discussions: {},
       tasks: {},
       files: {},
       is_admin: true,
@@ -146,13 +175,28 @@ router.put("/register_admin", (req, res) => {
 
               main_db
                 .put(result)
-                .then(function (result2) {
+                .then(() => {
+                  var user_db = new PouchDB(
+                    `http://${process.env.host}:${process.env.port}/database/users`
+                  );
+
+                  user_db.info().then(() => {
+                    user_db.put(data);
+                  });
+                })
+                .then(function () {
                   try {
-                    req.session.username = JSON.stringify(
-                      `${data.alias.first}-${data.alias.last}`
-                    );
+                    req.session.username = username;
 
                     res.setHeader("Content-Type", "text/html");
+
+                    console.log(
+                      `Session saved: \nSession: ${JSON.stringify(
+                        req.session,
+                        null,
+                        2
+                      )}\nSession Username: ${req.session.username}`
+                    );
                   } catch (err) {
                     console.log(`Session Add Error: ${err}`);
                   }
@@ -161,7 +205,7 @@ router.put("/register_admin", (req, res) => {
                   res.end();
 
                   //Send emails
-                  new Send_Mail(data);
+                  //new Send_Mail(data);
                 })
                 .catch(function (err) {
                   console.log(`Error: ${err}`);
