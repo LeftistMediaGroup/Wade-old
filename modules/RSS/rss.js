@@ -45,7 +45,7 @@ class feedStore {
             "http://theanarchistlibrary.org/feed",
             "http://itsgoingdown.org/feed",
             "http://freedomnews.org.uk/feed",
-            "http://anarchistnews.org/rss.xml",
+            //"http://anarchistnews.org/rss.xml",
           ],
           refresh: 2000,
         });

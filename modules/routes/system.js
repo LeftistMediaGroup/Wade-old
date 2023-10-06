@@ -14,8 +14,13 @@ import * as dotenv from "dotenv";
 import strftime from "strftime";
 import Send_Mail from "../email.js";
 
-dotenv.config();
+import { createAvatar } from "@dicebear/core";
+import { bottts } from "@dicebear/collection";
 
+var path = require("path");
+const { __dirname } = require("path");
+
+dotenv.config();
 router.put("/register_user", (req, res) => {
   try {
     let password = req.body.password;
@@ -26,6 +31,70 @@ router.put("/register_user", (req, res) => {
 
     let username = `${first}-${last}-${chance.integer({ min: 1, max: 99 })}`;
 
+    let avatar = createAvatar(bottts, {
+      baseColor: [
+        "00acc1",
+        "1e88e5",
+        "5e35b1",
+        "6d4c41",
+        "7cb342",
+        "8e24aa",
+        "0039be5",
+        "43a047",
+        "546e7a",
+        "00897b",
+        "3949ab",
+        "757575",
+        "c0ca33",
+        "d81b60",
+        "e53935",
+        "f4511e",
+        "fb8c00",
+        "fdd835",
+        "ffb300",
+      ],
+      eyes: [
+        "bulging",
+        "dizzy",
+        "eva frame1",
+        "frame2 glow",
+        "happy hearts",
+        "robocop round",
+        "roundFrame01",
+        "roundFrame02",
+        "sensor",
+        "shade01",
+      ],
+      face: [
+        "round01",
+        "round02",
+        "square01",
+        "square02",
+        "square03",
+        "square04",
+      ],
+      mouth: [
+        "bite",
+        "diagram",
+        "grill01",
+        "grill02",
+        "grill03",
+        "smile01",
+        "smile02",
+        "square01",
+        "square02",
+      ],
+      sides: ["antenna01", "antenna02"],
+      top: ["radar"],
+    });
+
+    let avatarPath = `${require("path").resolve(
+      "./"
+    )}/public/avatars/${username}-avatar.svg`;
+    avatar.toFile(avatarPath);
+
+    let registerTime = strftime("%y%m%d_%X");
+
     let data = {
       _id: username,
       first: first,
@@ -33,24 +102,36 @@ router.put("/register_user", (req, res) => {
       username: username,
       password: password,
       email: email,
-      registerTime: strftime("%Y%M%D_%X"),
-      avatar: chance.avatar(),
-      messages: {
-        threads: {}
-        all: {},
-        inbox: {},
-        sent: {},
-        unread: {},
-        read: {},
+      registerTime: registerTime,
+      avatar: `http://${process.env.host}:${process.env.port}/public/${username}.svg`,
+      conversations: {
+        [username]: {
+          conversationName: `${username}-${username}`,
+          name: username,
+          lastSenderName: username,
+          info: "This is the first message in your conversation with yourself",
+          messages: {
+            [username]: {
+              message:
+                "This is the first message in your conversation with yourself",
+              sentTime: registerTime,
+              sender: username,
+              direction: "incoming",
+              avatarLink: avatar,
+            },
+          },
+          unreadCnt: 1,
+          avatarLink: avatar,
+          unreadDot: true,
+          lastActivityTime: registerTime,
+        },
       },
-      contacts: {},
+      contacts: { [username]: { username: username } },
       discussions: {},
       tasks: {},
       files: {},
       is_admin: false,
     };
-
-    console.log(`Data: ${JSON.stringify(data, null, 2)}`);
 
     var main_db = new PouchDB(
       `http://${process.env.host}:${process.env.port}/database/data`
@@ -62,11 +143,12 @@ router.put("/register_user", (req, res) => {
         .then(function (result) {
           if (!JSON.stringify(result).includes(email)) {
             result.users[username] = data;
-
             main_db
               .put(result)
               .then(() => {
-                var user_db = new PouchDB(`database/users`);
+                var user_db = new PouchDB(
+                  `http://${process.env.host}:${process.env.port}/database/users`
+                );
 
                 user_db.info().then(() => {
                   user_db.put(data);
@@ -136,6 +218,70 @@ router.put("/register_admin", (req, res) => {
 
     let username = `${first}-${last}-${chance.integer({ min: 1, max: 99 })}`;
 
+    let avatar = createAvatar(bottts, {
+      baseColor: [
+        "00acc1",
+        "1e88e5",
+        "5e35b1",
+        "6d4c41",
+        "7cb342",
+        "8e24aa",
+        "0039be5",
+        "43a047",
+        "546e7a",
+        "00897b",
+        "3949ab",
+        "757575",
+        "c0ca33",
+        "d81b60",
+        "e53935",
+        "f4511e",
+        "fb8c00",
+        "fdd835",
+        "ffb300",
+      ],
+      eyes: [
+        "bulging",
+        "dizzy",
+        "eva frame1",
+        "frame2 glow",
+        "happy hearts",
+        "robocop round",
+        "roundFrame01",
+        "roundFrame02",
+        "sensor",
+        "shade01",
+      ],
+      face: [
+        "round01",
+        "round02",
+        "square01",
+        "square02",
+        "square03",
+        "square04",
+      ],
+      mouth: [
+        "bite",
+        "diagram",
+        "grill01",
+        "grill02",
+        "grill03",
+        "smile01",
+        "smile02",
+        "square01",
+        "square02",
+      ],
+      sides: ["antenna01", "antenna02"],
+      top: ["radar"],
+    });
+
+    let avatarPath = `${require("path").resolve(
+      "./"
+    )}/public/avatars/${username}-avatar.svg`;
+    avatar.toFile(avatarPath);
+
+    let registerTime = strftime("%y%m%d_%X");
+
     let data = {
       _id: username,
       first: first,
@@ -143,17 +289,31 @@ router.put("/register_admin", (req, res) => {
       username: username,
       password: password,
       email: email,
-      registerTime: strftime("%Y%M%D_%X"),
-      avatar: chance.avatar(),
-      messages: {
-        threads: {}
-        all: {},
-        inbox: {},
-        sent: {},
-        unread: {},
-        read: {},
+      registerTime: registerTime,
+      avatar: `http://${process.env.host}:${process.env.port}/public/${username}.svg`,
+      conversations: {
+        [username]: {
+          conversationName: `${username}-${username}`,
+          name: username,
+          lastSenderName: username,
+          info: "This is the first message in your conversation with yourself",
+          messages: {
+            [username]: {
+              message:
+                "This is the first message in your conversation with yourself",
+              sentTime: registerTime,
+              sender: username,
+              direction: "incoming",
+              avatarLink: avatar,
+            },
+          },
+          unreadCnt: 1,
+          avatarLink: avatar,
+          unreadDot: true,
+          lastActivityTime: registerTime,
+        },
       },
-      contacts: {},
+      contacts: { [username]: { username: username } },
       discussions: {},
       tasks: {},
       files: {},

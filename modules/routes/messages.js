@@ -24,7 +24,7 @@ router.put("/get_messages", (req, res) => {
     user_db
       .get(`${req.body.username}`)
       .then(function (result) {
-        res.json(result.messages);
+        res.json(result.conversations);
         res.end();
       })
       .catch(function (err) {

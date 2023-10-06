@@ -12,6 +12,8 @@ import Library from "./routes/library.js";
 import Admin from "./routes/admin.js";
 import Messages from "./routes/messages.js";
 
+import Contacts from "./routes/contacts.js";
+
 import { fileURLToPath } from "url";
 
 const require = createRequire(import.meta.url);
@@ -72,6 +74,7 @@ export function Express_Init_Start() {
         maxAge: 86400000,
         httpOnly: false,
       },
+      store: new FileStore(),
     })
   );
 
@@ -137,6 +140,8 @@ export function Express_Init_Start() {
   app.use("/library", Library);
   app.use("/admin", Admin);
   app.use("/messages", Messages);
+
+  app.use("/contacts", Contacts);
 
   app.use(express.static("public"));
 

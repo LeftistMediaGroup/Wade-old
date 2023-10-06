@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@dicebear/collection": "^7.0.1",
+    "@dicebear/core": "^7.0.1",
     "blob-util": "^2.0.2",
     "body-parser": "^1.20.2",
     "chance": "^1.1.11",
@@ -35,6 +37,7 @@
     "rss-feed-emitter": "^3.2.3",
     "rss-parser": "^3.13.0",
     "session-file-store": "^1.5.0",
+    "socket.io": "^4.7.2",
     "strftime": "^0.10.2",
     "uuid": "^9.0.0",
     "uuidv4": "^6.2.13"

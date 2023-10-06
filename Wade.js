@@ -3,6 +3,8 @@ import { Database_init_start } from "./modules/database_init.js";
 import startRSS from "./modules/RSS/rss.js";
 import Replicator from "./modules/replicator.js";
 
+import Socket from "./modules/Socket/socket.js";
+
 async function Start() {
   new Promise(() => {
     try {
@@ -21,6 +23,7 @@ async function Start() {
     console.log(`\nDatabase Online!\n`);
 
     await startRSS();
+    new Socket();
   }
 
   function resolveExpressInit() {
