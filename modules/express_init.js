@@ -208,8 +208,8 @@ export function Express_Init_Start() {
 
     const httpsServer = https.createServer(
       {
-        key: fs.readFileSync(`./.ssl/${process.env.key}`),
-        cert: fs.readFileSync(`./.ssl/${process.env.cert}`),
+        key: fs.readFileSync(`./${process.env.key}`),
+        cert: fs.readFileSync(`./${process.env.cert}`),
       },
       app
     );
