@@ -1,11 +1,7 @@
 /node_modules
 /.env
-/database
 /ssl
-/database/*
 /package-lock.json
-/logs/*
-logs/*
 sessions
 erase/.env
 .env
