@@ -51,7 +51,6 @@ export function Express_Init_Start() {
   try {
     const app = express();
 
-
     const FileStoreSession = FileStore(session);
     const sessionMiddleware = session({
       secret: "Keyboard_Cat",
@@ -67,7 +66,7 @@ export function Express_Init_Start() {
     });
 
     let corsOptions = {
-      origin: "https://home.4a2ib8tj96gajw856jj7.xyz",
+      origin: "https://localhost:5500",
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
       allowedHeaders:
         'Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept, Origin, Access-Control-Allow-Credentials',
