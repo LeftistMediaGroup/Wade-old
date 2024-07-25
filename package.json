@@ -49,6 +49,7 @@
     "nodemailer": "^6.9.7",
     "npm": "^10.4.0",
     "pouchdb": "^8.0.1",
+    "pouchdb-adapter-memory": "^9.0.0",
     "pouchdb-all-dbs": "^1.1.1",
     "pouchdb-auth": "^4.2.0",
     "pouchdb-authentication": "^1.1.3",

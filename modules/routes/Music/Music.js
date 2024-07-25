@@ -7,7 +7,7 @@ const path = require('path')
 
 const dirTree = require("directory-tree");
 var PouchDB = require("pouchdb");
-
+PouchDB.plugin(require('pouchdb-adapter-memory'));
 
 
 var router = express.Router();
@@ -47,23 +47,6 @@ router.put('/is_active', (req, res) => {
             }).then(() => {
                 res.json(result.songs)
             })
-        }).catch(function (err) {
-            if (err.error === "not_found") {
-                Object.values(songs).forEach(song => {
-                    if (song.is_active !== true) {
-                        song.is_active = false;
-                    }
-                })
-
-                Music_db.put(
-                    {
-                        _id: "Main",
-                        songs: songs
-                    }
-                ).then((result) => {
-                    res.json(result.songs);
-                })
-            }
         })
     })
 });
@@ -103,8 +86,14 @@ router.get('/get_active', (req, res) => {
                     Songs[song.name] = song;
                 }
             })
+
             res.json(Songs)
-        })
+        }).catch(function (err) {
+            if (err.error === "not_found") {
+
+                res.json(Songs)
+            }
+        });
     })
 
 });
