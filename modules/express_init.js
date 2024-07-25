@@ -98,7 +98,6 @@ export function Express_Init_Start() {
         PouchDB.defaults({
           prefix: "./database/",
           skip_setup: true,
-          adapter: 'memory'
         })
       )
     );
@@ -112,6 +111,7 @@ export function Express_Init_Start() {
       require("express-pouchdb")(
         PouchDB.defaults({
           prefix: "./database/",
+          view_adapter: "memory"
         })
       )
     );
