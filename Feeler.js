@@ -18,7 +18,7 @@ async function Start() {
   await Promise.all([SSL_Init(), Database_init_start(), Express_Init_Start()
   ])
     .then(() => {
-      console.log(`\nDatabase Online!\n`);
+      console.log(`Database Online`);
 
     })
     .catch((err) => {

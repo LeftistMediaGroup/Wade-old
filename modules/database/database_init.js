@@ -9,7 +9,7 @@ dotenv.config();
 
 
 export function Database_init_start() {
-  console.log(`Database Init:`)
+  console.log(`Initalizing Database`)
 
   let url = `https://${process.env.host}/database/data`;
 
@@ -17,9 +17,6 @@ export function Database_init_start() {
 
   data_db
     .get("Main")
-    .then(function () {
-      console.log(`\nMain Found\n`);
-    })
     .catch(function (err) {
       if (err) {
         if (err.error === "not_found") {
@@ -47,9 +44,6 @@ export function Database_init_start() {
           }
 
           Promise.all([Manifest(), Main()])
-            .then(function () {
-              console.log(`\nDatabase online!\n`);
-            })
             .catch((err) => {
               console.log(`Error: ${err}`);
             });

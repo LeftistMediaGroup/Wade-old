@@ -17,7 +17,6 @@ export default class Socket {
     constructor(io) {
         this.io = io;
         this.InitSocketIO();
-        console.log(`Socket Connected`);
     }
 
     InitSocketIO = () => {

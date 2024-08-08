@@ -9,10 +9,9 @@ const exec = require('child_process').exec;
 
 
 export default function SSL_Init() {
-
     fs.stat('./key.pem', function (err, stat) {
         if (err == null) {
-            console.log('SSL File exists');
+            //
         } else if (err.code === 'ENOENT') {
 
             console.log(`No SSL file, generating now. Standby 3 sec`)

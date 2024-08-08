@@ -14,13 +14,8 @@ PouchDB.plugin(require('transform-pouch'));
 
 export class Crypto_Init {
     constructor(url) {
-        console.log(`KEY_INIT: ${process.env.KEY_INIT}`)
-
-        console.log(`IV_VALUE: ${process.env.IV_VALUE}`)
-
         if (typeof process.env.KEY_INIT !== "undefined") {
             if (typeof process.env.IV_VALUE !== "undefined") {
-                console.log(`IV FOUND`)
                 let db = Pouch_Init(url);
 
                 return db;

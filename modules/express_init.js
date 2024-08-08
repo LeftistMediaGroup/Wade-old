@@ -224,14 +224,16 @@ export function Express_Init_Start() {
 
     io.use(sharedsession(sessionMiddleware, { autoSave: true }));
 
-
     new Socket(io);
 
 
     const port = process.env.port;
 
     httpsServer.listen(port, () => {
-      console.log(`Express server listening on port ${port}\n`);
+      setTimeout(() => {
+        console.log(`\nWade online!`);
+        console.log(`Wade listening at https://localhost:${port} !\n`);
+      }, 500)
     });
   } catch (error) {
     console.log(error);
