@@ -16,7 +16,7 @@ export class Crypto_Init {
     constructor(url) {
         if (typeof process.env.KEY_INIT !== "undefined") {
             if (typeof process.env.IV_VALUE !== "undefined") {
-                let db = Pouch_Init(url);
+                let db = DatabasePouch_Init(url);
 
                 return db;
 
@@ -101,7 +101,7 @@ export class PouchCrypto {
     }
 }
 
-export function Pouch_Init(url) {
+export function DatabasePouch_Init(url) {
     try {
         var data_db = new PouchDB(url);
 
