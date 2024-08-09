@@ -24,7 +24,6 @@ import dotenv from 'dotenv';
 import logger from 'morgan';
 import cors from 'cors';
 import PouchDB from 'pouchdb';
-import Auth from 'pouchdb-auth';
 import serveIndex from 'serve-index';
 
 
@@ -238,5 +237,4 @@ export function Express_Init_Start() {
   } catch (error) {
     console.log(error);
   }
-
 }
